@@ -13,7 +13,6 @@
 		7B2D97330AECCE180098C6AA /* NSTaskAdditions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7B830C330A951402005CEFF4 /* NSTaskAdditions.mm */; };
 		7B2D973E0AECCE910098C6AA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
 		7B2D97410AECCEA70098C6AA /* NSObjectAdditions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7B830C310A951402005CEFF4 /* NSObjectAdditions.mm */; };
-		7B81841C0A0C809F0003639B /* RWPluginUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B81841B0A0C809F0003639B /* RWPluginUtilities.framework */; };
 		7B830C360A951402005CEFF4 /* NSObjectAdditions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7B830C310A951402005CEFF4 /* NSObjectAdditions.mm */; };
 		7B830C370A951402005CEFF4 /* NSTaskAdditions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7B830C330A951402005CEFF4 /* NSTaskAdditions.mm */; settings = {COMPILER_FLAGS = "-fobjc-exceptions"; }; };
 		7B830C890A951452005CEFF4 /* MarkupFilters in Resources */ = {isa = PBXBuildFile; fileRef = 7B830C7E0A951452005CEFF4 /* MarkupFilters */; };
@@ -49,15 +48,12 @@
 		7B208D5F0A7B62DD006E1DA8 /* MarkupExport.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MarkupExport.mm; sourceTree = "<group>"; tabWidth = 4; usesTabs = 1; };
 		7B2D97240AECCD360098C6AA /* NSTaskTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSTaskTest.mm; sourceTree = "<group>"; };
 		7B2D972D0AECCE0C0098C6AA /* NSTaskTest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "compiled.mach-o.executable"; path = NSTaskTest; sourceTree = BUILT_PRODUCTS_DIR; };
-		7B81841B0A0C809F0003639B /* RWPluginUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RWPluginUtilities.framework; path = "/Applications/RapidWeaver 3.5 Beta 1.app/Contents/Frameworks/RWPluginUtilities.framework"; sourceTree = "<absolute>"; };
 		7B830C300A951402005CEFF4 /* NSObjectAdditions.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NSObjectAdditions.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 1; };
 		7B830C310A951402005CEFF4 /* NSObjectAdditions.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; path = NSObjectAdditions.mm; sourceTree = "<group>"; tabWidth = 4; usesTabs = 1; };
 		7B830C320A951402005CEFF4 /* NSTaskAdditions.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NSTaskAdditions.h; sourceTree = "<group>"; };
 		7B830C330A951402005CEFF4 /* NSTaskAdditions.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; path = NSTaskAdditions.mm; sourceTree = "<group>"; };
-		7B830C340A951402005CEFF4 /* RapidWeaver.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = RapidWeaver.h; sourceTree = "<group>"; };
 		7B830C350A951402005CEFF4 /* RWPluginFramework.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = RWPluginFramework.h; sourceTree = "<group>"; };
 		7B830C7E0A951452005CEFF4 /* MarkupFilters */ = {isa = PBXFileReference; lastKnownFileType = folder; path = MarkupFilters; sourceTree = "<group>"; };
-		7BB4867B09C42F7A00E2C7BA /* DotMacKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DotMacKit.framework; path = "/Applications/RapidWeaver 3.5 Beta 1.app/Contents/Frameworks/DotMacKit.framework"; sourceTree = "<absolute>"; };
 		7BB486AD09C4300700E2C7BA /* Markup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Markup.h; sourceTree = "<group>"; };
 		7BB486AE09C4300700E2C7BA /* Markup.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Markup.mm; sourceTree = "<group>"; };
 		7BB4874209C83A3A00E2C7BA /* MarkupTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkupTextView.h; sourceTree = "<group>"; };
@@ -81,7 +77,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D5B49B4048680CD000E48DA /* Cocoa.framework in Frameworks */,
-				7B81841C0A0C809F0003639B /* RWPluginUtilities.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,8 +99,6 @@
 			isa = PBXGroup;
 			children = (
 				1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */,
-				7BB4867B09C42F7A00E2C7BA /* DotMacKit.framework */,
-				7B81841B0A0C809F0003639B /* RWPluginUtilities.framework */,
 			);
 			name = Dependencies;
 			sourceTree = "<group>";
@@ -134,7 +127,6 @@
 				7B830C330A951402005CEFF4 /* NSTaskAdditions.mm */,
 				7B2D97240AECCD360098C6AA /* NSTaskTest.mm */,
 				7BB4876C09C83BCB00E2C7BA /* RapidWeaver-Prefix.pch */,
-				7B830C340A951402005CEFF4 /* RapidWeaver.h */,
 				7B830C350A951402005CEFF4 /* RWPluginFramework.h */,
 			);
 			name = Code;
@@ -283,7 +275,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(RWPluginUtilitiesFrameworkPath)/..";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(RWPluginUtilitiesFrameworkPath)/..",
+					/Applications/RapidWeaver.app/Contents/Frameworks,
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
@@ -296,7 +291,11 @@
 				INFOPLIST_PREPROCESSOR_DEFINITIONS = "VERSION_NUMBER=$VERSION_NUMBER";
 				INSTALL_PATH = "$(HOME)/Library/Application Support/RapidWeaver";
 				ONLY_LINK_ESSENTIAL_SYMBOLS = YES;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-framework",
+					RWPluginUtilities,
+				);
 				PRODUCT_NAME = Markup;
 				VERSION_NUMBER = 0.14U;
 				WARNING_CFLAGS = "-Wmost";
@@ -312,7 +311,10 @@
 					ppc,
 					i386,
 				);
-				FRAMEWORK_SEARCH_PATHS = "$(RWPluginUtilitiesFrameworkPath)/..";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(RWPluginUtilitiesFrameworkPath)/..",
+					/Applications/RapidWeaver.app/Contents/Frameworks,
+				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -322,7 +324,11 @@
 				INFOPLIST_PREPROCESSOR_DEFINITIONS = "VERSION_NUMBER=$VERSION_NUMBER";
 				INSTALL_PATH = "$(HOME)/Library/Application Support/RapidWeaver";
 				ONLY_LINK_ESSENTIAL_SYMBOLS = YES;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-framework",
+					RWPluginUtilities,
+				);
 				PRODUCT_NAME = Markup;
 				VERSION_NUMBER = 0.14U;
 				WARNING_CFLAGS = "-Wmost";

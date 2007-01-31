@@ -16,8 +16,8 @@ sub new {
     my $class = shift;
     my %options = @_;
     $options{filters} ||= {};
-    $options{charset} ||= 'utf-8';
-    $options{char_encoding} = 0 unless exists $options{char_encoding};
+    $options{charset} ||= 'iso-8859-1';
+    $options{char_encoding} = 1 unless exists $options{char_encoding};
     $options{do_quotes} = 1 unless exists $options{do_quotes};
     $options{trim_spaces} = 0 unless exists $options{trim_spaces};
     $options{smarty_mode} = 1 unless exists $options{smarty_mode};

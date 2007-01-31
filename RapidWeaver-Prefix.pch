@@ -1,0 +1,21 @@
+#ifdef __OBJC__
+
+#   import <Cocoa/Cocoa.h>
+
+// C++ (and thus Objective-C++) has 'template' as a keyword, which is used
+// as the name of an argument to a method in RWAbstractPlugin.h...
+
+#   ifdef __cplusplus
+#       define template aTemplate
+#   endif
+
+#   import <RWPluginUtilities/RWAbstractPlugin.h>
+
+#   ifdef __cplusplus
+#       undef template
+#   endif
+
+#   import <RWPluginUtilities/RWPluginInterface.h>
+#   import <RWPluginUtilities/RMHTML.h>
+
+#endif

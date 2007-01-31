@@ -1,0 +1,420 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7B05D3A809CBD30B00A3FC99 /* Markup.nib in Resources */ = {isa = PBXBuildFile; fileRef = 7B05D3A609CBD30B00A3FC99 /* Markup.nib */; };
+		7B208D600A7B62DD006E1DA8 /* MarkupExport.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7B208D5F0A7B62DD006E1DA8 /* MarkupExport.mm */; };
+		7B2D97320AECCE170098C6AA /* NSTaskTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7B2D97240AECCD360098C6AA /* NSTaskTest.mm */; };
+		7B2D97330AECCE180098C6AA /* NSTaskAdditions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7B830C330A951402005CEFF4 /* NSTaskAdditions.mm */; };
+		7B2D973E0AECCE910098C6AA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
+		7B2D97410AECCEA70098C6AA /* NSObjectAdditions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7B830C310A951402005CEFF4 /* NSObjectAdditions.mm */; };
+		7B81841C0A0C809F0003639B /* RWPluginUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B81841B0A0C809F0003639B /* RWPluginUtilities.framework */; };
+		7B830C360A951402005CEFF4 /* NSObjectAdditions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7B830C310A951402005CEFF4 /* NSObjectAdditions.mm */; };
+		7B830C370A951402005CEFF4 /* NSTaskAdditions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7B830C330A951402005CEFF4 /* NSTaskAdditions.mm */; settings = {COMPILER_FLAGS = "-fobjc-exceptions"; }; };
+		7B830C890A951452005CEFF4 /* MarkupFilters in Resources */ = {isa = PBXBuildFile; fileRef = 7B830C7E0A951452005CEFF4 /* MarkupFilters */; };
+		7BB486AF09C4300700E2C7BA /* Markup.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7BB486AE09C4300700E2C7BA /* Markup.mm */; };
+		7BB4874409C83A3B00E2C7BA /* MarkupTextView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7BB4874309C83A3A00E2C7BA /* MarkupTextView.mm */; };
+		8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
+		8D5B49B4048680CD000E48DA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		7BB4862109C42F0800E2C7BA /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.gcc.4_0;
+			fileType = sourcecode.cpp;
+			isEditable = 1;
+			outputFiles = (
+			);
+		};
+		7BB4862209C42F0A00E2C7BA /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.gcc.4_0;
+			fileType = sourcecode.c;
+			isEditable = 1;
+			outputFiles = (
+			);
+		};
+/* End PBXBuildRule section */
+
+/* Begin PBXFileReference section */
+		089C167EFE841241C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		7B05D3A709CBD30B00A3FC99 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/Markup.nib; sourceTree = "<group>"; };
+		7B208D5F0A7B62DD006E1DA8 /* MarkupExport.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MarkupExport.mm; sourceTree = "<group>"; tabWidth = 4; usesTabs = 1; };
+		7B2D97240AECCD360098C6AA /* NSTaskTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSTaskTest.mm; sourceTree = "<group>"; };
+		7B2D972D0AECCE0C0098C6AA /* NSTaskTest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "compiled.mach-o.executable"; path = NSTaskTest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B81841B0A0C809F0003639B /* RWPluginUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RWPluginUtilities.framework; path = "/Applications/RapidWeaver 3.5 Beta 1.app/Contents/Frameworks/RWPluginUtilities.framework"; sourceTree = "<absolute>"; };
+		7B830C300A951402005CEFF4 /* NSObjectAdditions.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NSObjectAdditions.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 1; };
+		7B830C310A951402005CEFF4 /* NSObjectAdditions.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; path = NSObjectAdditions.mm; sourceTree = "<group>"; tabWidth = 4; usesTabs = 1; };
+		7B830C320A951402005CEFF4 /* NSTaskAdditions.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NSTaskAdditions.h; sourceTree = "<group>"; };
+		7B830C330A951402005CEFF4 /* NSTaskAdditions.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; path = NSTaskAdditions.mm; sourceTree = "<group>"; };
+		7B830C340A951402005CEFF4 /* RapidWeaver.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = RapidWeaver.h; sourceTree = "<group>"; };
+		7B830C350A951402005CEFF4 /* RWPluginFramework.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = RWPluginFramework.h; sourceTree = "<group>"; };
+		7B830C7E0A951452005CEFF4 /* MarkupFilters */ = {isa = PBXFileReference; lastKnownFileType = folder; path = MarkupFilters; sourceTree = "<group>"; };
+		7BB4867B09C42F7A00E2C7BA /* DotMacKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DotMacKit.framework; path = "/Applications/RapidWeaver 3.5 Beta 1.app/Contents/Frameworks/DotMacKit.framework"; sourceTree = "<absolute>"; };
+		7BB486AD09C4300700E2C7BA /* Markup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Markup.h; sourceTree = "<group>"; };
+		7BB486AE09C4300700E2C7BA /* Markup.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Markup.mm; sourceTree = "<group>"; };
+		7BB4874209C83A3A00E2C7BA /* MarkupTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkupTextView.h; sourceTree = "<group>"; };
+		7BB4874309C83A3A00E2C7BA /* MarkupTextView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MarkupTextView.mm; sourceTree = "<group>"; };
+		7BB4876C09C83BCB00E2C7BA /* RapidWeaver-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = "RapidWeaver-Prefix.pch"; sourceTree = "<group>"; };
+		8D5B49B6048680CD000E48DA /* Markup.rwplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Markup.rwplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D5B49B7048680CD000E48DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7B2D972B0AECCE0C0098C6AA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7B2D973E0AECCE910098C6AA /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D5B49B3048680CD000E48DA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D5B49B4048680CD000E48DA /* Cocoa.framework in Frameworks */,
+				7B81841C0A0C809F0003639B /* RWPluginUtilities.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		089C166AFE841209C02AAC07 /* Markup */ = {
+			isa = PBXGroup;
+			children = (
+				08FB77AFFE84173DC02AAC07 /* Code */,
+				089C167CFE841241C02AAC07 /* Resources */,
+				089C1671FE841209C02AAC07 /* Dependencies */,
+				19C28FB8FE9D52D311CA2CBB /* Products */,
+				7B05D3A609CBD30B00A3FC99 /* Markup.nib */,
+			);
+			name = Markup;
+			sourceTree = "<group>";
+		};
+		089C1671FE841209C02AAC07 /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */,
+				7BB4867B09C42F7A00E2C7BA /* DotMacKit.framework */,
+				7B81841B0A0C809F0003639B /* RWPluginUtilities.framework */,
+			);
+			name = Dependencies;
+			sourceTree = "<group>";
+		};
+		089C167CFE841241C02AAC07 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7B830C7E0A951452005CEFF4 /* MarkupFilters */,
+				8D5B49B7048680CD000E48DA /* Info.plist */,
+				089C167DFE841241C02AAC07 /* InfoPlist.strings */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		08FB77AFFE84173DC02AAC07 /* Code */ = {
+			isa = PBXGroup;
+			children = (
+				7BB486AD09C4300700E2C7BA /* Markup.h */,
+				7BB486AE09C4300700E2C7BA /* Markup.mm */,
+				7B208D5F0A7B62DD006E1DA8 /* MarkupExport.mm */,
+				7BB4874209C83A3A00E2C7BA /* MarkupTextView.h */,
+				7BB4874309C83A3A00E2C7BA /* MarkupTextView.mm */,
+				7B830C300A951402005CEFF4 /* NSObjectAdditions.h */,
+				7B830C310A951402005CEFF4 /* NSObjectAdditions.mm */,
+				7B830C320A951402005CEFF4 /* NSTaskAdditions.h */,
+				7B830C330A951402005CEFF4 /* NSTaskAdditions.mm */,
+				7B2D97240AECCD360098C6AA /* NSTaskTest.mm */,
+				7BB4876C09C83BCB00E2C7BA /* RapidWeaver-Prefix.pch */,
+				7B830C340A951402005CEFF4 /* RapidWeaver.h */,
+				7B830C350A951402005CEFF4 /* RWPluginFramework.h */,
+			);
+			name = Code;
+			sourceTree = "<group>";
+		};
+		19C28FB8FE9D52D311CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D5B49B6048680CD000E48DA /* Markup.rwplugin */,
+				7B2D972D0AECCE0C0098C6AA /* NSTaskTest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7B2D972C0AECCE0C0098C6AA /* NSTaskTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7B2D97360AECCE360098C6AA /* Build configuration list for PBXNativeTarget "NSTaskTest" */;
+			buildPhases = (
+				7B2D972A0AECCE0C0098C6AA /* Sources */,
+				7B2D972B0AECCE0C0098C6AA /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NSTaskTest;
+			productName = NSTaskTest;
+			productReference = 7B2D972D0AECCE0C0098C6AA /* NSTaskTest */;
+			productType = "com.apple.product-type.tool";
+		};
+		8D5B49AC048680CD000E48DA /* Markup */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB913A08733D840010E9CD /* Build configuration list for PBXNativeTarget "Markup" */;
+			buildPhases = (
+				8D5B49AF048680CD000E48DA /* Resources */,
+				8D5B49B1048680CD000E48DA /* Sources */,
+				8D5B49B3048680CD000E48DA /* Frameworks */,
+				7B2A94480A95593100A300A1 /* ShellScript */,
+			);
+			buildRules = (
+				7BB4862209C42F0A00E2C7BA /* PBXBuildRule */,
+				7BB4862109C42F0800E2C7BA /* PBXBuildRule */,
+			);
+			dependencies = (
+			);
+			name = Markup;
+			productInstallPath = "$(HOME)/Library/Bundles";
+			productName = Markup;
+			productReference = 8D5B49B6048680CD000E48DA /* Markup.rwplugin */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		089C1669FE841209C02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB913E08733D840010E9CD /* Build configuration list for PBXProject "Markup" */;
+			hasScannedForEncodings = 1;
+			mainGroup = 089C166AFE841209C02AAC07 /* Markup */;
+			projectDirPath = "";
+			targets = (
+				8D5B49AC048680CD000E48DA /* Markup */,
+				7B2D972C0AECCE0C0098C6AA /* NSTaskTest */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D5B49AF048680CD000E48DA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */,
+				7B05D3A809CBD30B00A3FC99 /* Markup.nib in Resources */,
+				7B830C890A951452005CEFF4 /* MarkupFilters in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7B2A94480A95593100A300A1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "case \"$BUILD_STYLE\" in\n    *Release*);;\n    *) exit;;\nesac\n\nbuild_dir=\"$SYMROOT/$BUILD_STYLE\"\nzip=\"$build_dir/$(basename \"$FULL_PRODUCT_NAME\" .\"$WRAPPER_EXTENSION\")-\"$VERSION_NUMBER\".zip\"\n\ncd \"$build_dir\"\n\nrm -f \"$zip\"\n/usr/bin/zip -9yr \"$zip\" \"$FULL_PRODUCT_NAME\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7B2D972A0AECCE0C0098C6AA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7B2D97320AECCE170098C6AA /* NSTaskTest.mm in Sources */,
+				7B2D97330AECCE180098C6AA /* NSTaskAdditions.mm in Sources */,
+				7B2D97410AECCEA70098C6AA /* NSObjectAdditions.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D5B49B1048680CD000E48DA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7BB486AF09C4300700E2C7BA /* Markup.mm in Sources */,
+				7BB4874409C83A3B00E2C7BA /* MarkupTextView.mm in Sources */,
+				7B208D600A7B62DD006E1DA8 /* MarkupExport.mm in Sources */,
+				7B830C360A951402005CEFF4 /* NSObjectAdditions.mm in Sources */,
+				7B830C370A951402005CEFF4 /* NSTaskAdditions.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		089C167DFE841241C02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C167EFE841241C02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		7B05D3A609CBD30B00A3FC99 /* Markup.nib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7B05D3A709CBD30B00A3FC99 /* English */,
+			);
+			name = Markup.nib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB913B08733D840010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(RWPluginUtilitiesFrameworkPath)/..";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RapidWeaver-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = "ENABLE_LOGGING=1";
+				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_PREPROCESS = YES;
+				INFOPLIST_PREPROCESSOR_DEFINITIONS = "VERSION_NUMBER=$VERSION_NUMBER";
+				INSTALL_PATH = "$(HOME)/Library/Application Support/RapidWeaver";
+				ONLY_LINK_ESSENTIAL_SYMBOLS = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = Markup;
+				VERSION_NUMBER = 0.14U;
+				WARNING_CFLAGS = "-Wmost";
+				WRAPPER_EXTENSION = rwplugin;
+				ZERO_LINK = YES;
+			};
+			name = Debug;
+		};
+		1DEB913C08733D840010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				FRAMEWORK_SEARCH_PATHS = "$(RWPluginUtilitiesFrameworkPath)/..";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RapidWeaver-Prefix.pch";
+				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_PREPROCESS = YES;
+				INFOPLIST_PREPROCESSOR_DEFINITIONS = "VERSION_NUMBER=$VERSION_NUMBER";
+				INSTALL_PATH = "$(HOME)/Library/Application Support/RapidWeaver";
+				ONLY_LINK_ESSENTIAL_SYMBOLS = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = Markup;
+				VERSION_NUMBER = 0.14U;
+				WARNING_CFLAGS = "-Wmost";
+				WRAPPER_EXTENSION = rwplugin;
+			};
+			name = Release;
+		};
+		1DEB913F08733D840010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+			};
+			name = Debug;
+		};
+		1DEB914008733D840010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+			};
+			name = Release;
+		};
+		7B2D97370AECCE360098C6AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_DEBUGGING_SYMBOLS = full;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INSTALL_PATH = "$(HOME)/bin";
+				PREBINDING = NO;
+				PRODUCT_NAME = NSTaskTest;
+				ZERO_LINK = NO;
+			};
+			name = Debug;
+		};
+		7B2D97380AECCE360098C6AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_DEBUGGING_SYMBOLS = full;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				INSTALL_PATH = "$(HOME)/bin";
+				PREBINDING = NO;
+				PRODUCT_NAME = NSTaskTest;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB913A08733D840010E9CD /* Build configuration list for PBXNativeTarget "Markup" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB913B08733D840010E9CD /* Debug */,
+				1DEB913C08733D840010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB913E08733D840010E9CD /* Build configuration list for PBXProject "Markup" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB913F08733D840010E9CD /* Debug */,
+				1DEB914008733D840010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7B2D97360AECCE360098C6AA /* Build configuration list for PBXNativeTarget "NSTaskTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7B2D97370AECCE360098C6AA /* Debug */,
+				7B2D97380AECCE360098C6AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 089C1669FE841209C02AAC07 /* Project object */;
+}

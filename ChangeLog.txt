@@ -1,0 +1,12 @@
+Markup Plugin Changes
+=====================
+
+Version 0.14U
+-------------
+
+* Hovering your mouse over a markup text area will now display a tooltip
+  telling you what kind of markup it is, e.g. Markdown or Textile.  (This
+  applies to markup text that have been set with 0.14U and later only.)
+
+* Smart Quotes are now on by default.
+

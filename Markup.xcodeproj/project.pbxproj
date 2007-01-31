@@ -59,6 +59,7 @@
 		7BB4874209C83A3A00E2C7BA /* MarkupTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkupTextView.h; sourceTree = "<group>"; };
 		7BB4874309C83A3A00E2C7BA /* MarkupTextView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MarkupTextView.mm; sourceTree = "<group>"; };
 		7BB4876C09C83BCB00E2C7BA /* RapidWeaver-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = "RapidWeaver-Prefix.pch"; sourceTree = "<group>"; };
+		7BFE8A130B70A4E2006FD7BA /* BUILDING-INSTRUCTIONS.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "BUILDING-INSTRUCTIONS.txt"; sourceTree = "<group>"; };
 		8D5B49B6048680CD000E48DA /* Markup.rwplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Markup.rwplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D5B49B7048680CD000E48DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -86,6 +87,7 @@
 		089C166AFE841209C02AAC07 /* Markup */ = {
 			isa = PBXGroup;
 			children = (
+				7BFE8A130B70A4E2006FD7BA /* BUILDING-INSTRUCTIONS.txt */,
 				08FB77AFFE84173DC02AAC07 /* Code */,
 				089C167CFE841241C02AAC07 /* Resources */,
 				089C1671FE841209C02AAC07 /* Dependencies */,
@@ -276,7 +278,7 @@
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(RWPluginUtilitiesFrameworkPath)/..",
+					"$(RapidWeaverPath)/Contents/Frameworks/RWPluginUtilities.framework",
 					/Applications/RapidWeaver.app/Contents/Frameworks,
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -312,7 +314,7 @@
 					i386,
 				);
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(RWPluginUtilitiesFrameworkPath)/..",
+					"$(RapidWeaverPath)/Contents/Frameworks/RWPluginUtilities.framework",
 					/Applications/RapidWeaver.app/Contents/Frameworks,
 				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;

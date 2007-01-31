@@ -1,0 +1,22 @@
+Building the Markup Plugin
+==========================
+
+First, just try building the thing in Xcode on a fresh checkout.  If that works,
+congratulations, you don't need to do a thing!
+
+If that doesn't work, it probably failed because we don't know where the
+RWPluginUtilities.framework is.  That's a framework that's embedded inside
+the RapidWeaver.app bundle.  You'll need to tell Xcode where to find it.  To
+do that:
+
+ * Go to your Xcode Preferences (Cmd-,).
+ * Go to the "Source Trees" tab.
+ * Add a new setting named RapidWeaverPath, and set its Path to where you've
+   installed RapidWeaver, e.g. "/Applications/RapidWeaver 3.5.app" (you'll need
+   double quotes around the path if it has a space or unusual characters in
+   it!)
+   
+That should be about it.  Email me if you're still having problems building the
+thing.
+
+- Andre

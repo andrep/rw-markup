@@ -278,7 +278,7 @@
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(RapidWeaverPath)/Contents/Frameworks/RWPluginUtilities.framework",
+					"$(RapidWeaverPath)/Contents/Frameworks",
 					/Applications/RapidWeaver.app/Contents/Frameworks,
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -313,7 +313,7 @@
 					i386,
 				);
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(RapidWeaverPath)/Contents/Frameworks/RWPluginUtilities.framework",
+					"$(RapidWeaverPath)/Contents/Frameworks",
 					/Applications/RapidWeaver.app/Contents/Frameworks,
 				);
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;

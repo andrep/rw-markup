@@ -14,7 +14,7 @@ do that:
  * Add a new setting named RapidWeaverPath, and set its Path to where you've
    installed RapidWeaver, e.g. "/Applications/RapidWeaver 3.5.app" (you'll need
    double quotes around the path if it has a space or unusual characters in
-   it!)
+   it.)
    
 That should be about it.  Email me if you're still having problems building the
 thing.

@@ -260,25 +260,24 @@
 							   longestEffectiveRange:&linkRange
 											 inRange:range];
 			
-			if (link != nil)
-			{
-				// Hmm, maybe [link href] refers to MyDocument's -pageFromUniqueID method?
-				Log(@"Found link -> %d, %@ (%@), %@, %@, %@",
-					  [link internal], [link href], [[link href] className], [link anchor], [link name], [[link target] className]);
-				
+			if(link == nil) continue;
+			
+			// Hmm, maybe [link href] refers to MyDocument's -pageFromUniqueID method?
+			Log(@"Found link -> %d, %@ (%@), %@, %@, %@",
+				  [link internal], [link href], [[link href] className], [link anchor], [link name], [[link target] className]);
+			
 #if 0
-				NSDictionary* attributes = [NSDictionary dictionaryWithObjectsAndKeys:
-					[NSNumber numberWithBool:YES], kRWTextViewIgnoreFormattingAttributeName,
-					nil];
-				
-				NSAttributedString* replacedLink =
-					[[[NSAttributedString alloc] initWithString:[link href] attributes:attributes] autorelease];
-				
-				[filteredString replaceCharactersInRange:linkRange withAttributedString:replacedLink];
-				
-				linkRange.length = [replacedLink length];
+			NSDictionary* attributes = [NSDictionary dictionaryWithObjectsAndKeys:
+				[NSNumber numberWithBool:YES], kRWTextViewIgnoreFormattingAttributeName,
+				nil];
+			
+			NSAttributedString* replacedLink =
+				[[[NSAttributedString alloc] initWithString:[link href] attributes:attributes] autorelease];
+			
+			[filteredString replaceCharactersInRange:linkRange withAttributedString:replacedLink];
+			
+			linkRange.length = [replacedLink length];
 #endif
-			}
 		}
 		
 		

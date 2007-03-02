@@ -61,7 +61,7 @@ static Markup* sharedMarkupPlugin = nil;
 }
 
 // This method is called when the plugin is loaded, and the plugin's bundle is passed as an argument. If initialization fails, return NO, and if it goes alright, return YES.
-+ (BOOL)initializeClass:(NSBundle *)theBundle
++ (BOOL)initializeClass:(NSBundle*)theBundle
 {
     LOG_ENTRY;
     

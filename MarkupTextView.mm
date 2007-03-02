@@ -2,6 +2,7 @@
 
 #import "Markup.h"
 #import "MarkupTextView.h"
+#import "NSAttributedString+ParagraphTests.h"
 #import "NSTaskAdditions.h"
 
 //***************************************************************************
@@ -241,7 +242,7 @@
                                            longestEffectiveRange:&range
                                                          inRange:rangeLimit];
         
-        if (attributeValue != nil) continue;
+        if (attributeValue == nil) continue;
 
 		if (![[attributeValue objectForKey:@"name"] isEqualToString:@"filter"]) continue;
 			
@@ -284,8 +285,13 @@
 		NSString* markupStyleName = [attributeValue objectForKey:@"style"];
 		NSString* filterCommandPath = [self pathToFilterCommandForMarkupStyleName:markupStyleName];                
 		
-		Log(@"Found filter text at %u/%u (%@) (%@...)", range.location, range.length, markupStyleName,
-			[str length] <= 50 ? [str string] : [[str string] substringWithRange:NSMakeRange(0,50)]);
+#ifdef ENABLE_LOGGING
+		{
+			NSString* markupString = [[filteredString string] substringWithRange:range];
+			Log(@"Found filter text at %u/%u (%@) (%@...)", range.location, range.length, markupStyleName,
+				[markupString length] <= 40 ? markupString : [markupString substringWithRange:NSMakeRange(0,40)]);
+		}
+#endif
 		
 		NSData* filteredData = [NSTask launchedTaskWithLaunchPath:filterCommandPath
 														arguments:[NSArray array]
@@ -311,8 +317,10 @@
 			htmlData = filteredData;
 		}
 		
+		NSString* trimmedString = [[[NSString alloc] initWithData:htmlData encoding:NSUTF8StringEncoding] autorelease];
+
 		// Released a bit further on in this method
-		NSString* replacedString = [[NSString alloc] initWithData:htmlData encoding:NSUTF8StringEncoding];
+		NSMutableString* replacedString = [[trimmedString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] mutableCopy];
 		
 		[htmlData release];
 		htmlData = nil;
@@ -320,6 +328,28 @@
 		NSDictionary* attributes = [NSDictionary dictionaryWithObjectsAndKeys:
 			[NSNumber numberWithBool:YES], kRWTextViewIgnoreFormattingAttributeName,
 			nil];
+		
+		// Kill any <p>'s from the start if it's not the start of a paragraph
+		if(![filteredString isRangeAtStartOfParagraph:range])
+		{
+			if([replacedString length] >= 3
+			   && [[replacedString substringWithRange:NSMakeRange(0,3)] caseInsensitiveCompare:@"<p>"] == NSOrderedSame)
+			{
+				[replacedString deleteCharactersInRange:NSMakeRange(0,3)];
+			}
+		}
+		
+		// Kill any </p>'s from the end of it's not the end of a paragraph
+		if(![filteredString isRangeAtEndOfParagraph:range])
+		{
+			if([replacedString length] >= 4
+			   && [[replacedString substringWithRange:NSMakeRange([replacedString length]-4,4)] caseInsensitiveCompare:@"</p>"] == NSOrderedSame)
+			{
+				[replacedString deleteCharactersInRange:NSMakeRange([replacedString length]-4,4)];
+			}
+		}
+		
+		NSLog(@"Replaced string is now <%@>", replacedString);
 		
 		// Released a bit further on in this method
 		NSAttributedString* replacedAttributedString =

@@ -18,6 +18,7 @@
 		7B830C890A951452005CEFF4 /* MarkupFilters in Resources */ = {isa = PBXBuildFile; fileRef = 7B830C7E0A951452005CEFF4 /* MarkupFilters */; };
 		7BB486AF09C4300700E2C7BA /* Markup.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7BB486AE09C4300700E2C7BA /* Markup.mm */; };
 		7BB4874409C83A3B00E2C7BA /* MarkupTextView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7BB4874309C83A3A00E2C7BA /* MarkupTextView.mm */; };
+		7BBAECFA0B97CAF40022222C /* NSAttributedString+ParagraphTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BBAECF90B97CAF40022222C /* NSAttributedString+ParagraphTests.m */; };
 		8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
 		8D5B49B4048680CD000E48DA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -59,6 +60,8 @@
 		7BB4874209C83A3A00E2C7BA /* MarkupTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkupTextView.h; sourceTree = "<group>"; };
 		7BB4874309C83A3A00E2C7BA /* MarkupTextView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MarkupTextView.mm; sourceTree = "<group>"; };
 		7BB4876C09C83BCB00E2C7BA /* RapidWeaver-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = "RapidWeaver-Prefix.pch"; sourceTree = "<group>"; };
+		7BBAECF80B97CAF40022222C /* NSAttributedString+ParagraphTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+ParagraphTests.h"; sourceTree = "<group>"; };
+		7BBAECF90B97CAF40022222C /* NSAttributedString+ParagraphTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+ParagraphTests.m"; sourceTree = "<group>"; };
 		7BFE8A130B70A4E2006FD7BA /* BUILDING-INSTRUCTIONS.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "BUILDING-INSTRUCTIONS.txt"; sourceTree = "<group>"; };
 		8D5B49B6048680CD000E48DA /* Markup.rwplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Markup.rwplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D5B49B7048680CD000E48DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -123,6 +126,8 @@
 				7B208D5F0A7B62DD006E1DA8 /* MarkupExport.mm */,
 				7BB4874209C83A3A00E2C7BA /* MarkupTextView.h */,
 				7BB4874309C83A3A00E2C7BA /* MarkupTextView.mm */,
+				7BBAECF80B97CAF40022222C /* NSAttributedString+ParagraphTests.h */,
+				7BBAECF90B97CAF40022222C /* NSAttributedString+ParagraphTests.m */,
 				7B830C300A951402005CEFF4 /* NSObjectAdditions.h */,
 				7B830C310A951402005CEFF4 /* NSObjectAdditions.mm */,
 				7B830C320A951402005CEFF4 /* NSTaskAdditions.h */,
@@ -248,6 +253,7 @@
 				7B208D600A7B62DD006E1DA8 /* MarkupExport.mm in Sources */,
 				7B830C360A951402005CEFF4 /* NSObjectAdditions.mm in Sources */,
 				7B830C370A951402005CEFF4 /* NSTaskAdditions.mm in Sources */,
+				7BBAECFA0B97CAF40022222C /* NSAttributedString+ParagraphTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +283,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(RapidWeaverPath)/Contents/Frameworks",
 					/Applications/RapidWeaver.app/Contents/Frameworks,
@@ -312,6 +319,7 @@
 					ppc,
 					i386,
 				);
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(RapidWeaverPath)/Contents/Frameworks",
 					/Applications/RapidWeaver.app/Contents/Frameworks,

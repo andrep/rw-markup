@@ -116,7 +116,7 @@
 {
     LOG_ENTRY;
     
-    NSMutableString* string = [[NSMutableString alloc] init];
+    NSMutableString* string = [NSMutableString string];
     
     [string appendString:@"\nAttributes"];
     [string appendString:@"\n==========\n"];
@@ -152,8 +152,6 @@
     }
     
     Log(@"%@", string);
-    
-    [string release];
 }
 
 - (NSNumber*) markupEnabledForFilterStyleInSelectedRange:(NSString*)markupStyleName
@@ -228,8 +226,7 @@
     range.location = 0;
     range.length = [str length];
 
-    NSMutableAttributedString* filteredString = [[NSMutableAttributedString alloc] initWithAttributedString:str];
-    [filteredString autorelease];
+    NSMutableAttributedString* filteredString = [[[NSMutableAttributedString alloc] initWithAttributedString:str] autorelease];
 
     for (unsigned int currentIndex = 0;
          currentIndex < [filteredString length];
@@ -275,8 +272,7 @@
                             nil];
                         
                         NSAttributedString* replacedLink =
-                            [[NSAttributedString alloc] initWithString:[link href] attributes:attributes];
-                        [replacedLink autorelease];
+                            [[[NSAttributedString alloc] initWithString:[link href] attributes:attributes] autorelease];
                         
                         [filteredString replaceCharactersInRange:linkRange withAttributedString:replacedLink];
                         
@@ -316,6 +312,7 @@
                     htmlData = filteredData;
                 }
                 
+				// Released a bit further on in this method
                 NSString* replacedString = [[NSString alloc] initWithData:htmlData encoding:NSUTF8StringEncoding];
                 
                 [htmlData release];
@@ -325,6 +322,7 @@
                     [NSNumber numberWithBool:YES], kRWTextViewIgnoreFormattingAttributeName,
                     nil];
                 
+				// Released a bit further on in this method
                 NSAttributedString* replacedAttributedString =
                     [[NSAttributedString alloc] initWithString:replacedString attributes:attributes];
                 

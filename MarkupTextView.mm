@@ -241,102 +241,100 @@
                                            longestEffectiveRange:&range
                                                          inRange:rangeLimit];
         
-        if (attributeValue != nil)
-        {
-            if ([[attributeValue objectForKey:@"name"] isEqualToString:@"filter"])
-            {
-                NSString* string = [[filteredString attributedSubstringFromRange:range] string];
-                NSData* stringData = [string dataUsingEncoding:NSUTF8StringEncoding];
-                
-                // Replace links with <a href=...>
-                
-                NSRange linkRange;
-                for(unsigned linkIndex = range.location;
-                    linkIndex < range.location + range.length;
-                    linkIndex = linkRange.location + linkRange.length)
-                {
-                    RWLink* link = [filteredString attribute:NSLinkAttributeName
-                                                     atIndex:linkIndex
-                                       longestEffectiveRange:&linkRange
-                                                     inRange:range];
-                    
-                    if (link != nil)
-                    {
-                        // Hmm, maybe [link href] refers to MyDocument's -pageFromUniqueID method?
-                        Log(@"Found link -> %d, %@ (%@), %@, %@, %@",
-                              [link internal], [link href], [[link href] className], [link anchor], [link name], [[link target] className]);
-                        
+        if (attributeValue != nil) continue;
+
+		if (![[attributeValue objectForKey:@"name"] isEqualToString:@"filter"]) continue;
+			
+		NSString* string = [[filteredString attributedSubstringFromRange:range] string];
+		NSData* stringData = [string dataUsingEncoding:NSUTF8StringEncoding];
+		
+		// Replace links with <a href=...>
+		
+		NSRange linkRange;
+		for(unsigned linkIndex = range.location;
+			linkIndex < range.location + range.length;
+			linkIndex = linkRange.location + linkRange.length)
+		{
+			RWLink* link = [filteredString attribute:NSLinkAttributeName
+											 atIndex:linkIndex
+							   longestEffectiveRange:&linkRange
+											 inRange:range];
+			
+			if (link != nil)
+			{
+				// Hmm, maybe [link href] refers to MyDocument's -pageFromUniqueID method?
+				Log(@"Found link -> %d, %@ (%@), %@, %@, %@",
+					  [link internal], [link href], [[link href] className], [link anchor], [link name], [[link target] className]);
+				
 #if 0
-                        NSDictionary* attributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                            [NSNumber numberWithBool:YES], kRWTextViewIgnoreFormattingAttributeName,
-                            nil];
-                        
-                        NSAttributedString* replacedLink =
-                            [[[NSAttributedString alloc] initWithString:[link href] attributes:attributes] autorelease];
-                        
-                        [filteredString replaceCharactersInRange:linkRange withAttributedString:replacedLink];
-                        
-                        linkRange.length = [replacedLink length];
+				NSDictionary* attributes = [NSDictionary dictionaryWithObjectsAndKeys:
+					[NSNumber numberWithBool:YES], kRWTextViewIgnoreFormattingAttributeName,
+					nil];
+				
+				NSAttributedString* replacedLink =
+					[[[NSAttributedString alloc] initWithString:[link href] attributes:attributes] autorelease];
+				
+				[filteredString replaceCharactersInRange:linkRange withAttributedString:replacedLink];
+				
+				linkRange.length = [replacedLink length];
 #endif
-                    }
-                }
-                
-                
-                NSString* markupStyleName = [attributeValue objectForKey:@"style"];
-                NSString* filterCommandPath = [self pathToFilterCommandForMarkupStyleName:markupStyleName];                
-                
-                Log(@"Found filter text at %u/%u (%@) (%@...)", range.location, range.length, markupStyleName,
-                    [str length] <= 50 ? [str string] : [[str string] substringWithRange:NSMakeRange(0,50)]);
-                
-                NSData* filteredData = [NSTask launchedTaskWithLaunchPath:filterCommandPath
-                                                                arguments:[NSArray array]
-                                                            standardInput:stringData];
-                [filteredData retain];
-                
-                NSData* htmlData = nil;
-                
-                // Smart Quote the text if necessary
-                if([Markup sharedMarkupPlugin]->usingSmartQuotes)
-                {
-                    NSString* filterCommandPath = [self pathToSmartQuotesFilterCommand];
-                    htmlData = [NSTask launchedTaskWithLaunchPath:filterCommandPath
-                                                        arguments:[NSArray array]
-                                                    standardInput:filteredData];
-                    [htmlData retain];
-                    
-                    [filteredData release];
-                    filteredData = nil;
-                }
-                else
-                {
-                    htmlData = filteredData;
-                }
-                
-				// Released a bit further on in this method
-                NSString* replacedString = [[NSString alloc] initWithData:htmlData encoding:NSUTF8StringEncoding];
-                
-                [htmlData release];
-                htmlData = nil;
-                
-                NSDictionary* attributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                    [NSNumber numberWithBool:YES], kRWTextViewIgnoreFormattingAttributeName,
-                    nil];
-                
-				// Released a bit further on in this method
-                NSAttributedString* replacedAttributedString =
-                    [[NSAttributedString alloc] initWithString:replacedString attributes:attributes];
-                
-                [replacedString release];
-                replacedString = nil;
-                
-                [filteredString replaceCharactersInRange:range withAttributedString:replacedAttributedString];
-                
-                [replacedAttributedString release];
-                replacedAttributedString = nil;
-                
-                range.length = [replacedString length];
-            }
-        }
+			}
+		}
+		
+		
+		NSString* markupStyleName = [attributeValue objectForKey:@"style"];
+		NSString* filterCommandPath = [self pathToFilterCommandForMarkupStyleName:markupStyleName];                
+		
+		Log(@"Found filter text at %u/%u (%@) (%@...)", range.location, range.length, markupStyleName,
+			[str length] <= 50 ? [str string] : [[str string] substringWithRange:NSMakeRange(0,50)]);
+		
+		NSData* filteredData = [NSTask launchedTaskWithLaunchPath:filterCommandPath
+														arguments:[NSArray array]
+													standardInput:stringData];
+		[filteredData retain];
+		
+		NSData* htmlData = nil;
+		
+		// Smart Quote the text if necessary
+		if([Markup sharedMarkupPlugin]->usingSmartQuotes)
+		{
+			NSString* filterCommandPath = [self pathToSmartQuotesFilterCommand];
+			htmlData = [NSTask launchedTaskWithLaunchPath:filterCommandPath
+												arguments:[NSArray array]
+											standardInput:filteredData];
+			[htmlData retain];
+			
+			[filteredData release];
+			filteredData = nil;
+		}
+		else
+		{
+			htmlData = filteredData;
+		}
+		
+		// Released a bit further on in this method
+		NSString* replacedString = [[NSString alloc] initWithData:htmlData encoding:NSUTF8StringEncoding];
+		
+		[htmlData release];
+		htmlData = nil;
+		
+		NSDictionary* attributes = [NSDictionary dictionaryWithObjectsAndKeys:
+			[NSNumber numberWithBool:YES], kRWTextViewIgnoreFormattingAttributeName,
+			nil];
+		
+		// Released a bit further on in this method
+		NSAttributedString* replacedAttributedString =
+			[[NSAttributedString alloc] initWithString:replacedString attributes:attributes];
+		
+		[replacedString release];
+		replacedString = nil;
+		
+		[filteredString replaceCharactersInRange:range withAttributedString:replacedAttributedString];
+		
+		[replacedAttributedString release];
+		replacedAttributedString = nil;
+		
+		range.length = [replacedString length];
     }
 
     return [super exportAttributedString:filteredString

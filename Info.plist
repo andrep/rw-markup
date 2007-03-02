@@ -17,11 +17,11 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>VERSION_NUMBER</string>
+	<string>CURRENT_PROJECT_VERSION</string>
         <key>CFBundleSignature</key>
         <string>????</string>
 	<key>CFBundleVersion</key>
-	<string>VERSION_NUMBER</string>
+	<string>CURRENT_PROJECT_VERSION</string>
 	<key>NSPrincipalClass</key>
 	<string>Markup</string>
         <key>com.realmacsoftware.rapidweaverpro.plugin.apiversion</key>

@@ -349,8 +349,6 @@
 			}
 		}
 		
-		NSLog(@"Replaced string is now <%@>", replacedString);
-		
 		// Released a bit further on in this method
 		NSAttributedString* replacedAttributedString =
 			[[NSAttributedString alloc] initWithString:replacedString attributes:attributes];

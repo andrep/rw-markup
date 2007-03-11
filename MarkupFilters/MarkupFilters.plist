@@ -26,6 +26,29 @@
 		<key>FilterCommandExtension</key>
 		<string>sh</string>
 	</dict>
+
+	<!-- These aren't quite in use yet... need to fix up
+	     RapidWeaver's irritating <br/> behaviour!
+
+	<dict>
+		<key>Name</key>
+		<string>Colourise Code (C)</string>
+		<key>FilterCommand</key>
+		<string>source-highlight_c</string>
+		<key>FilterCommandExtension</key>
+		<string>sh</string>
+	</dict>
+	<dict>
+		<key>Name</key>
+		<string>Colourise Code (C++)</string>
+		<key>FilterCommand</key>
+		<string>source-highlight_cpp</string>
+		<key>FilterCommandExtension</key>
+		<string>sh</string>
+	</dict>
+	
+	-->
+
 </array>
 
 </plist>

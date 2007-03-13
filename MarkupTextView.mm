@@ -159,8 +159,6 @@
 {
     NSRange range = [self selectedRange];
     
-    Log(@"Selected range is %u/%u", range.location, range.length);
-
     NSDictionary* markupStyleAttribute = nil;
     if(range.length == 0)
     {

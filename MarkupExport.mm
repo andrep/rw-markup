@@ -122,8 +122,8 @@
 		NSLog(@"rangeLimit now %u/%u", rangeLimit.location, rangeLimit.length);
 		
 		for (unsigned int attributeSearchLocationIndex = currentIndex;
-			 attributeSearchLocationIndex < rangeLimit.location+rangeLimit.length;
-			 attributeSearchLocationIndex = range.location + range.length){
+			 attributeSearchLocationIndex < NSMaxRange(rangeLimit);
+			 attributeSearchLocationIndex = NSMaxRange(range)){
 			
 			rangeLimit = NSMakeRange(attributeSearchLocationIndex, fullRangeLimit.length-attributeSearchLocationIndex);
 			
@@ -176,13 +176,13 @@
 		// Break out if there's no more textblock markers
 		if (textBlockLevelRWMarkupAttributeRange.location == NSNotFound) break;
 		
-		assert(textBlockLevelRWMarkupAttributeRange.location + textBlockLevelRWMarkupAttributeRange.length < [attributedSourceString length]);
+		assert(NSMaxRange(textBlockLevelRWMarkupAttributeRange) < [attributedSourceString length]);
 		
 		NSLog(@"RWAttribute block at %u/%u", textBlockLevelRWMarkupAttributeRange.location, textBlockLevelRWMarkupAttributeRange.length);
 		
 		[chunks addObject:[attributedSourceString attributedSubstringFromRange:textBlockLevelRWMarkupAttributeRange]];
 		
-		currentIndex = textBlockLevelRWMarkupAttributeRange.location+textBlockLevelRWMarkupAttributeRange.length;
+		currentIndex = NSMaxRange(textBlockLevelRWMarkupAttributeRange);
 	}
 
 	NSLog(@"Chunks:\n%@", chunks);

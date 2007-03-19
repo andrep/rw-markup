@@ -79,8 +79,8 @@
             NSRange textAttachmentRange;
             
             for (unsigned textAttachmentLocation = range.location;
-                 textAttachmentLocation < range.location + range.length;
-                 textAttachmentLocation = textAttachmentRange.location + textAttachmentRange.length)
+                 textAttachmentLocation < NSMaxRange(range);
+                 textAttachmentLocation = NSMaxRange(textAttachmentRange))
             {
                 NSDictionary* maybeTextAttachment = [[self textStorage] attribute:NSAttachmentAttributeName
                                                                           atIndex:textAttachmentLocation
@@ -132,7 +132,7 @@
     
     for (unsigned int currentIndex = 0;
          currentIndex < rangeLimit.length;
-         currentIndex = range.location + range.length)
+         currentIndex = NSMaxRange(range))
     {
         NSDictionary* dict = [textStorage attributesAtIndex:currentIndex
                                       longestEffectiveRange:&range
@@ -171,7 +171,7 @@
         markupStyleAttribute = [[self textStorage] attribute:kRWTextViewMarkupDirectivesAttributeName atIndex:range.location longestEffectiveRange:&longestRange inRange:range];
         
         if(longestRange.location > range.location
-           || (longestRange.location + longestRange.length) < (range.location + range.length))
+           || (NSMaxRange(longestRange) < NSMaxRange(range)))
         {
             return [NSNumber numberWithBool:NO];
         }
@@ -229,7 +229,7 @@
 
     for (unsigned int currentIndex = 0;
          currentIndex < [filteredString length];
-         currentIndex = range.location + range.length)
+         currentIndex = NSMaxRange(range))
     {
         NSRange rangeLimit;
         rangeLimit.location = 0;
@@ -251,8 +251,8 @@
 		
 		NSRange linkRange;
 		for(unsigned linkIndex = range.location;
-			linkIndex < range.location + range.length;
-			linkIndex = linkRange.location + linkRange.length)
+			linkIndex < NSMaxRange(range);
+			linkIndex = NSMaxRange(linkRange))
 		{
 			RWLink* link = [filteredString attribute:NSLinkAttributeName
 											 atIndex:linkIndex
@@ -283,7 +283,8 @@
 		NSString* markupStyleName = [attributeValue objectForKey:@"style"];
 		NSString* filterCommandPath = [self pathToFilterCommandForMarkupStyleName:markupStyleName];                
 		
-#ifdef ENABLE_LOGGING
+#if 0
+// #ifdef ENABLE_LOGGING
 		{
 			NSString* markupString = [[filteredString string] substringWithRange:range];
 			Log(@"Found filter text at %u/%u (%@) (%@...)", range.location, range.length, markupStyleName,
@@ -343,6 +344,8 @@
 			if([replacedString length] >= 4
 			   && [[replacedString substringWithRange:NSMakeRange([replacedString length]-4,4)] caseInsensitiveCompare:@"</p>"] == NSOrderedSame)
 			{
+				NSLog(@"Killing </p> for string text %@", [[filteredString string] substringWithRange:range]);
+				
 				[replacedString deleteCharactersInRange:NSMakeRange([replacedString length]-4,4)];
 			}
 		}

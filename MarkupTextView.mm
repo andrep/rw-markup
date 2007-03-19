@@ -284,7 +284,6 @@
 		NSString* filterCommandPath = [self pathToFilterCommandForMarkupStyleName:markupStyleName];                
 		
 #if 0
-// #ifdef ENABLE_LOGGING
 		{
 			NSString* markupString = [[filteredString string] substringWithRange:range];
 			Log(@"Found filter text at %u/%u (%@) (%@...)", range.location, range.length, markupStyleName,
@@ -344,8 +343,6 @@
 			if([replacedString length] >= 4
 			   && [[replacedString substringWithRange:NSMakeRange([replacedString length]-4,4)] caseInsensitiveCompare:@"</p>"] == NSOrderedSame)
 			{
-				NSLog(@"Killing </p> for string text %@", [[filteredString string] substringWithRange:range]);
-				
 				[replacedString deleteCharactersInRange:NSMakeRange([replacedString length]-4,4)];
 			}
 		}

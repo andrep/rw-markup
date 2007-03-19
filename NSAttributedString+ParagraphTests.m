@@ -8,45 +8,60 @@
 
 static inline BOOL IsNewlineCharacter(const unichar c)
 {
-	return (c == 10 /* \r */ || c == 13 /* \n */);
+	return (c == 10 /* newline (\r) */
+			|| c == 11 /* vertical tab */
+			|| c == 12 /* form feed */
+			|| c == 13 /* carriage return (\n) */
+			|| c == 2028 /* Unicode line separator */
+			|| c == 2029 /* Unicode paragraph separator */);
 }
 									  
 - (BOOL) isRangeAtStartOfParagraph:(const NSRange)range
 {
-	if(range.location == 0) return YES;
-	
-	if(range.location == 1)
+	if(range.location == 0)
+	{
+		return YES;
+	}
+	else if(range.location == 1)
 	{
 		const unichar firstCharacter = [[self string] characterAtIndex:0];
 		
 		if(IsNewlineCharacter(firstCharacter)) return YES;
 		else return NO;
 	}
-		
-	const NSRange previousTwoCharactersRange = NSMakeRange(range.location-2, 2);
-	
-	if(previousTwoCharactersRange.location >= 0
-	   && previousTwoCharactersRange.location+previousTwoCharactersRange.length < [self length])
+	else if(range.length == 1)
 	{
-		NSString* previousTwoCharacters = [[self string] substringWithRange:previousTwoCharactersRange];
+		return IsNewlineCharacter([[self string] characterAtIndex:0]);
+	}
+	
+	int i = -2;
+	for(; i >= -2 && i <= 0; i++)
+	{
+		const NSRange twoCharacterRange = NSMakeRange(range.location+i, 2);
 		
-		if(IsNewlineCharacter([previousTwoCharacters characterAtIndex:0])
-		   && IsNewlineCharacter([previousTwoCharacters characterAtIndex:1]))
+		if(twoCharacterRange.location < 0 || NSMaxRange(twoCharacterRange) >= [self length]) continue;
+		
+		NSString* twoCharacters = [[self string] substringWithRange:twoCharacterRange];
+		
+		if(IsNewlineCharacter([twoCharacters characterAtIndex:0])
+		   && IsNewlineCharacter([twoCharacters characterAtIndex:1]))
 		{
 			return YES;
 		}
 	}
-
+		
 	return NO;
 }
 
 - (BOOL) isRangeAtEndOfParagraph:(const NSRange)range
 {
-	const unsigned indexAtEndOfRange = range.location+range.length;
+	const unsigned indexAtEndOfRange = NSMaxRange(range);
 	
-	if(indexAtEndOfRange == [self length]) return YES;
-	
-	if(indexAtEndOfRange == [self length]-1)
+	if(indexAtEndOfRange == [self length])
+	{
+		return YES;
+	}
+	else if(indexAtEndOfRange == [self length]-1)
 	{
 		const unichar lastCharacter = [[self string] characterAtIndex:indexAtEndOfRange];
 		
@@ -54,19 +69,23 @@ static inline BOOL IsNewlineCharacter(const unichar c)
 		else return NO;
 	}
 	
-	const NSRange nextTwoCharactersRange = NSMakeRange(indexAtEndOfRange, 2);
-	
-	NSString* nextTwoCharacters = [[self string] substringWithRange:nextTwoCharactersRange];
-	
-	if(IsNewlineCharacter([nextTwoCharacters characterAtIndex:0])
-	   && IsNewlineCharacter([nextTwoCharacters characterAtIndex:1]))
+	int i = -2;
+	for(; i >= -2 && i <= 0; i++)
 	{
-		return YES;
+		const NSRange twoCharactersRange = NSMakeRange(indexAtEndOfRange-2, 2);
+		
+		if(twoCharactersRange.location < 0 || NSMaxRange(twoCharactersRange) >= [self length]) continue;
+
+		NSString* twoCharacters = [[self string] substringWithRange:twoCharactersRange];
+		
+		if(IsNewlineCharacter([twoCharacters characterAtIndex:0])
+		   && IsNewlineCharacter([twoCharacters characterAtIndex:1]))
+		{
+			return YES;
+		}
 	}
-	else
-	{
-		return NO;
-	}
+		
+	return NO;
 }
 
 @end

@@ -1,6 +1,13 @@
 Markup Plugin Changes
 =====================
 
+Version 0.16
+------------
+
+* Strip <p> and </p> markers from markup text unless it's actually at the
+  start or end of a paragraph.
+
+
 Version 0.14U
 -------------
 

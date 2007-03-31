@@ -55,6 +55,7 @@
 		7B830C330A951402005CEFF4 /* NSTaskAdditions.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; path = NSTaskAdditions.mm; sourceTree = "<group>"; };
 		7B830C350A951402005CEFF4 /* RWPluginFramework.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = RWPluginFramework.h; sourceTree = "<group>"; };
 		7B830C7E0A951452005CEFF4 /* MarkupFilters */ = {isa = PBXFileReference; lastKnownFileType = folder; path = MarkupFilters; sourceTree = "<group>"; };
+		7BA410920BBDE96800377987 /* Mixed Markup and Plain Text.rw3 */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Mixed Markup and Plain Text.rw3"; path = "tests/Mixed Markup and Plain Text.rw3"; sourceTree = "<group>"; };
 		7BB486AD09C4300700E2C7BA /* Markup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Markup.h; sourceTree = "<group>"; };
 		7BB486AE09C4300700E2C7BA /* Markup.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Markup.mm; sourceTree = "<group>"; };
 		7BB4874209C83A3A00E2C7BA /* MarkupTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkupTextView.h; sourceTree = "<group>"; };
@@ -92,10 +93,11 @@
 			children = (
 				7BFE8A130B70A4E2006FD7BA /* BUILDING-INSTRUCTIONS.txt */,
 				08FB77AFFE84173DC02AAC07 /* Code */,
-				089C167CFE841241C02AAC07 /* Resources */,
 				089C1671FE841209C02AAC07 /* Dependencies */,
-				19C28FB8FE9D52D311CA2CBB /* Products */,
 				7B05D3A609CBD30B00A3FC99 /* Markup.nib */,
+				19C28FB8FE9D52D311CA2CBB /* Products */,
+				089C167CFE841241C02AAC07 /* Resources */,
+				7BA410910BBDE94F00377987 /* Tests */,
 			);
 			name = Markup;
 			sourceTree = "<group>";
@@ -146,6 +148,14 @@
 				7B2D972D0AECCE0C0098C6AA /* NSTaskTest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		7BA410910BBDE94F00377987 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				7BA410920BBDE96800377987 /* Mixed Markup and Plain Text.rw3 */,
+			);
+			name = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -248,14 +248,16 @@ static NSMutableArray* cachedMarkupStyles = nil;
         NSArray* keys = [NSArray arrayWithObjects:kMarkupStyleName, kMarkupStyleFilterCommand, nil];
         
         NSEnumerator* e = [filterStylesPropertyList objectEnumerator];
-        while (NSDictionary* propertyListEntry = [e nextObject])
+        while(NSDictionary* propertyListEntry = [e nextObject])
         {
             NSString* name = [propertyListEntry objectForKey:@"Name"];
             Log(@"name: %@", name);
             
-            NSString* path = [bundle pathForResource:[propertyListEntry objectForKey:@"FilterCommand"]
+			NSString* filterCommandPath = [propertyListEntry objectForKey:@"FilterCommand"];
+			
+            NSString* path = [bundle pathForResource:[filterCommandPath lastPathComponent]
                                               ofType:[propertyListEntry objectForKey:@"FilterCommandExtension"]
-                                         inDirectory:@"MarkupFilters"];
+                                         inDirectory:[@"MarkupFilters" stringByAppendingPathComponent:[filterCommandPath stringByDeletingLastPathComponent]]];
             Log(@"path: %@", path);
             
             NSArray* values = [NSArray arrayWithObjects:name, path, nil];

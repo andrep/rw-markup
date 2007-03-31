@@ -156,13 +156,13 @@ static Markup* sharedMarkupPlugin = nil;
 }
     // RapidWeaver will call this when it creates a new page. The unique ID is currently used in the styled plugin.
 
-BOOL addedMarkupTextMenuItem = NO;
 static NSMenu* markupLanguagesMenu = nil;
 
 + (void) addMarkupMenuItem
 {
     LOG_ENTRY;
-    
+
+    static BOOL addedMarkupTextMenuItem = NO;
     if (addedMarkupTextMenuItem) return;
 
     markupLanguagesMenu = [[NSMenu alloc] initWithTitle:@"Markup Languages"];

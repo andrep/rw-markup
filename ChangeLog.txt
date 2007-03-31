@@ -1,12 +1,17 @@
 Markup Plugin Changes
 =====================
 
+Version 0.17
+------------
+
+* Textile markup filter is now UTF-8 clean.  (Thanks to Wolfgang Küting for
+  this suggestion.)
 
 Version 0.16
 ------------
 
 * Strip <p> and </p> markers from markup text unless it's actually at the
-  start or end of a paragraph.
+  start or end of a paragraph.  (Thanks to ewiplayer for this suggestion.)
 
 * Added Texy markup filter <http://texy.info/en/>.
 

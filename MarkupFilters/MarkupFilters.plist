@@ -20,6 +20,14 @@
 	</dict>
 	<dict>
 		<key>Name</key>
+		<string>Texy</string>
+		<key>FilterCommand</key>
+		<string>texy-filter</string>
+		<key>FilterCommandExtension</key>
+		<string>php</string>
+	</dict>
+	<dict>
+		<key>Name</key>
 		<string>bash</string>
 		<key>FilterCommand</key>
 		<string>bash</string>

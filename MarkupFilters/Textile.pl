@@ -2,6 +2,26 @@
 #
 # $Id: Textile.pm,v 1.16 2004/02/19 14:52:58 brad Exp $
 
+# Note: This version of Textile has been hacked to work better with the Markup
+# plugin.  In particualr:
+#
+#  * There's been a couple of lines of code added to treat this Perl module as
+#    a UNIX filter.
+#
+#  * The 'mailto:' parser has been hacked a bit by Mirko Viviani to work
+#    a little better.
+#
+#  * The char_encoding parameter has been turned off, so that Textile will not
+#    attempt to encode characters it sees in the input stream -- this was
+#    because Textile is buggy at doing the conversion.  (Note that the
+#    charset option is still iso-8859-1, not utf-8, since Textile is also buggy
+#    at outputting non-ASCII characters in utf-8.)
+#
+# If any more hacks are done, we should be sending these changes upstream
+# rather than modifying our own local copy, and also importing the Textile
+# plugin and wrapping it as a proper UNIX filter rather than just hacking up
+# the Perl module itself (ugh).
+
 package Text::Textile;
 
 use strict;
@@ -17,7 +37,7 @@ sub new {
     my %options = @_;
     $options{filters} ||= {};
     $options{charset} ||= 'iso-8859-1';
-    $options{char_encoding} = 1 unless exists $options{char_encoding};
+    $options{char_encoding} = 0 unless exists $options{char_encoding};
     $options{do_quotes} = 1 unless exists $options{do_quotes};
     $options{trim_spaces} = 0 unless exists $options{trim_spaces};
     $options{smarty_mode} = 1 unless exists $options{smarty_mode};

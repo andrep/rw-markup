@@ -1,12 +1,26 @@
 Markup Plugin Changes
 =====================
 
+
 Version 0.16
 ------------
 
 * Strip <p> and </p> markers from markup text unless it's actually at the
   start or end of a paragraph.
 
+* Added Texy markup filter <http://texy.info/en/>.
+
+Version 0.15
+------------
+
+* The mailto: link in the the Textile filter should work a little better now.
+  (Thanks to Mirko Viviani for this patch.)
+
+* Entering Markup text in a sidebar should now work a little better.  (Thanks
+  to Roger Nilsson for this fix.)
+
+* The 'U' suffix in the version number was dropped, since Universal Binaries
+  are the norm now.
 
 Version 0.14U
 -------------

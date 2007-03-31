@@ -6,7 +6,7 @@
 		<key>Name</key>
 		<string>Markdown</string>
 		<key>FilterCommand</key>
-		<string>Markdown</string>
+		<string>Markdown/Markdown</string>
 		<key>FilterCommandExtension</key>
 		<string>pl</string>
 	</dict>
@@ -14,7 +14,7 @@
 		<key>Name</key>
 		<string>Textile</string>
 		<key>FilterCommand</key>
-		<string>Textile</string>
+		<string>Textile/Textile</string>
 		<key>FilterCommandExtension</key>
 		<string>pl</string>
 	</dict>
@@ -22,7 +22,7 @@
 		<key>Name</key>
 		<string>Texy</string>
 		<key>FilterCommand</key>
-		<string>texy-filter</string>
+		<string>Texy/texy-filter</string>
 		<key>FilterCommandExtension</key>
 		<string>php</string>
 	</dict>
@@ -30,7 +30,7 @@
 		<key>Name</key>
 		<string>bash</string>
 		<key>FilterCommand</key>
-		<string>bash</string>
+		<string>Bash/bash</string>
 		<key>FilterCommandExtension</key>
 		<string>sh</string>
 	</dict>

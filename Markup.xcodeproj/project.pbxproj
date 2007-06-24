@@ -48,7 +48,7 @@
 		7B05D3A709CBD30B00A3FC99 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/Markup.nib; sourceTree = "<group>"; };
 		7B208D5F0A7B62DD006E1DA8 /* MarkupExport.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MarkupExport.mm; sourceTree = "<group>"; tabWidth = 4; usesTabs = 1; };
 		7B2D97240AECCD360098C6AA /* NSTaskTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSTaskTest.mm; sourceTree = "<group>"; };
-		7B2D972D0AECCE0C0098C6AA /* NSTaskTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = NSTaskTest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B2D972D0AECCE0C0098C6AA /* NSTaskTest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "compiled.mach-o.executable"; path = NSTaskTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B830C300A951402005CEFF4 /* NSObjectAdditions.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NSObjectAdditions.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 1; };
 		7B830C310A951402005CEFF4 /* NSObjectAdditions.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; path = NSObjectAdditions.mm; sourceTree = "<group>"; tabWidth = 4; usesTabs = 1; };
 		7B830C320A951402005CEFF4 /* NSTaskAdditions.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NSTaskAdditions.h; sourceTree = "<group>"; };

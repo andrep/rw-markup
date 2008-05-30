@@ -7,12 +7,19 @@
 
 //***************************************************************************
 
+extern "C"
+{
+	extern id RWDocumentForPlugin(id plugin) WEAK_IMPORT_ATTRIBUTE;
+}
+
+@interface NSString (RWStringUtilities)
+- (NSString*)stringEscapedForHTMLElementText;
+@end
+
 @implementation MarkupTextView
 
 - (void) removeFormattingFromSelection:(id)sender
 {
-    LOG_ENTRY;
-    
     [[self textStorage] removeAttribute:kRWTextViewMarkupDirectivesAttributeName range:[self selectedRange]];
     
     [super removeFormattingFromSelection:sender];
@@ -115,8 +122,6 @@
 
 - (void) onDumpAttributes:(id)sender
 {
-    LOG_ENTRY;
-    
     NSMutableString* string = [NSMutableString string];
     
     [string appendString:@"\nAttributes"];
@@ -211,6 +216,19 @@
     return [[Markup sharedBundle] pathForResource:@"SmartyPants" ofType:@"pl" inDirectory:@"MarkupFilters"];
 }
 
+//---------------------------------------------------------------------------
+
+typedef enum
+{
+	RWExportModeExport,
+	RWExportModePublish,
+	RWExportModePreview,
+	RWExportModeViewSourceCode,
+	RWExportModeConvertingForWebViewDOM,
+}
+RWExportMode;
+
+//---------------------------------------------------------------------------
 
 - (NSString*) exportAttributedString:(NSAttributedString*)str
                               toPath:(NSString*)path
@@ -219,7 +237,8 @@
                         HTMLTemplate:(NSMutableString*)theTemplate
                           contentTag:(NSString*)contentTag
                             fromPage:(id)thePage
-                     depthCorrection:(int)depthCorrection;
+                     depthCorrection:(int)depthCorrection
+						  exportMode:(RWExportMode)exportMode
 {
     NSRange range;
     range.location = 0;
@@ -279,97 +298,147 @@
 #endif
 		}
 		
+		NSAttributedString* replacedAttributedString = nil;
 		
-		NSString* markupStyleName = [attributeValue objectForKey:@"style"];
-		NSString* filterCommandPath = [self pathToFilterCommandForMarkupStyleName:markupStyleName];                
-		
-#if 0
+		if(exportMode == RWExportModeConvertingForWebViewDOM)
 		{
-			NSString* markupString = [[filteredString string] substringWithRange:range];
-			Log(@"Found filter text at %u/%u (%@) (%@...)", range.location, range.length, markupStyleName,
-				[markupString length] <= 40 ? markupString : [markupString substringWithRange:NSMakeRange(0,40)]);
-		}
-#endif
-		
-		NSData* filteredData = [NSTask launchedTaskWithLaunchPath:filterCommandPath
-														arguments:[NSArray array]
-													standardInput:stringData];
-		[filteredData retain];
-		
-		NSData* htmlData = nil;
-		
-		// Smart Quote the text if necessary
-		if([Markup sharedMarkupPlugin]->usingSmartQuotes)
-		{
-			NSString* filterCommandPath = [self pathToSmartQuotesFilterCommand];
-			htmlData = [NSTask launchedTaskWithLaunchPath:filterCommandPath
-												arguments:[NSArray array]
-											standardInput:filteredData];
-			[htmlData retain];
+			Log(@"Markup is converting for WebView DOM...");
 			
-			[filteredData release];
-			filteredData = nil;
+			NSString* replacedString = [[NSString stringWithFormat:@"<pre class=\"rapidweaver-markup\">%@</pre>", [string stringEscapedForHTMLElementText]] retain];
+			
+			NSDictionary* attributes = [NSDictionary dictionaryWithObjectsAndKeys:
+										[NSNumber numberWithBool:YES], kRWTextViewIgnoreFormattingAttributeName,
+										nil];
+			
+			replacedAttributedString = [[NSAttributedString alloc] initWithString:replacedString attributes:attributes];
 		}
 		else
 		{
-			htmlData = filteredData;
+			NSString* markupStyleName = [attributeValue objectForKey:@"style"];
+			NSString* filterCommandPath = [self pathToFilterCommandForMarkupStyleName:markupStyleName];                
+			
+#if 0
+			{
+				NSString* markupString = [[filteredString string] substringWithRange:range];
+				Log(@"Found filter text at %u/%u (%@) (%@...)", range.location, range.length, markupStyleName,
+					[markupString length] <= 40 ? markupString : [markupString substringWithRange:NSMakeRange(0,40)]);
+			}
+#endif
+			
+			NSData* filteredData = [NSTask launchedTaskWithLaunchPath:filterCommandPath
+															arguments:[NSArray array]
+														standardInput:stringData];
+			[filteredData retain];
+			
+			NSData* htmlData = nil;
+			
+			// Smart Quote the text if necessary
+			if([Markup sharedMarkupPlugin]->usingSmartQuotes)
+			{
+				NSString* filterCommandPath = [self pathToSmartQuotesFilterCommand];
+				htmlData = [NSTask launchedTaskWithLaunchPath:filterCommandPath
+													arguments:[NSArray array]
+												standardInput:filteredData];
+				[htmlData retain];
+				
+				[filteredData release];
+				filteredData = nil;
+			}
+			else
+			{
+				htmlData = filteredData;
+			}
+			
+			NSString* trimmedString = [[[NSString alloc] initWithData:htmlData encoding:NSUTF8StringEncoding] autorelease];
+			
+			// Released a bit further on in this method
+			NSMutableString* replacedString = [[trimmedString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] mutableCopy];
+			
+			[htmlData release];
+			htmlData = nil;
+			
+			NSDictionary* attributes = [NSDictionary dictionaryWithObjectsAndKeys:
+										[NSNumber numberWithBool:YES], kRWTextViewIgnoreFormattingAttributeName,
+										nil];
+			
+			// Kill any <p>'s from the start if it's not the start of a paragraph
+			if(![filteredString isRangeAtStartOfParagraph:range])
+			{
+				if([replacedString length] >= 3
+				   && [[replacedString substringWithRange:NSMakeRange(0,3)] caseInsensitiveCompare:@"<p>"] == NSOrderedSame)
+				{
+					[replacedString deleteCharactersInRange:NSMakeRange(0,3)];
+				}
+			}
+			
+			// Kill any </p>'s from the end of it's not the end of a paragraph
+			if(![filteredString isRangeAtEndOfParagraph:range])
+			{
+				if([replacedString length] >= 4
+				   && [[replacedString substringWithRange:NSMakeRange([replacedString length]-4,4)] caseInsensitiveCompare:@"</p>"] == NSOrderedSame)
+				{
+					[replacedString deleteCharactersInRange:NSMakeRange([replacedString length]-4,4)];
+				}
+			}
+			
+			// Released a bit further on in this method
+			replacedAttributedString = [[NSAttributedString alloc] initWithString:replacedString attributes:attributes];
+			
+			[replacedString release];
+			replacedString = nil;
 		}
-		
-		NSString* trimmedString = [[[NSString alloc] initWithData:htmlData encoding:NSUTF8StringEncoding] autorelease];
 
-		// Released a bit further on in this method
-		NSMutableString* replacedString = [[trimmedString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] mutableCopy];
-		
-		[htmlData release];
-		htmlData = nil;
-		
-		NSDictionary* attributes = [NSDictionary dictionaryWithObjectsAndKeys:
-			[NSNumber numberWithBool:YES], kRWTextViewIgnoreFormattingAttributeName,
-			nil];
-		
-		// Kill any <p>'s from the start if it's not the start of a paragraph
-		if(![filteredString isRangeAtStartOfParagraph:range])
-		{
-			if([replacedString length] >= 3
-			   && [[replacedString substringWithRange:NSMakeRange(0,3)] caseInsensitiveCompare:@"<p>"] == NSOrderedSame)
-			{
-				[replacedString deleteCharactersInRange:NSMakeRange(0,3)];
-			}
-		}
-		
-		// Kill any </p>'s from the end of it's not the end of a paragraph
-		if(![filteredString isRangeAtEndOfParagraph:range])
-		{
-			if([replacedString length] >= 4
-			   && [[replacedString substringWithRange:NSMakeRange([replacedString length]-4,4)] caseInsensitiveCompare:@"</p>"] == NSOrderedSame)
-			{
-				[replacedString deleteCharactersInRange:NSMakeRange([replacedString length]-4,4)];
-			}
-		}
-		
-		// Released a bit further on in this method
-		NSAttributedString* replacedAttributedString =
-			[[NSAttributedString alloc] initWithString:replacedString attributes:attributes];
-		
-		[replacedString release];
-		replacedString = nil;
-		
 		[filteredString replaceCharactersInRange:range withAttributedString:replacedAttributedString];
+		
+		range.length = [replacedAttributedString length];
 		
 		[replacedAttributedString release];
 		replacedAttributedString = nil;
-		
-		range.length = [replacedString length];
     }
 
-    return [super exportAttributedString:filteredString
-                                  toPath:path
-                            imagesFolder:imagesFolder
-                             imagePrefix:imagePrefix
-                            HTMLTemplate:theTemplate
-                              contentTag:contentTag 
-                                fromPage:thePage
-                         depthCorrection:depthCorrection];
+	if([RMHTML instancesRespondToSelector:@selector(supportsConvertingToWebViewDOM)])
+	{
+		return [super exportAttributedString:filteredString
+									  toPath:path
+								imagesFolder:imagesFolder
+								 imagePrefix:imagePrefix
+								HTMLTemplate:theTemplate
+								  contentTag:contentTag 
+									fromPage:thePage
+							 depthCorrection:depthCorrection
+								  exportMode:exportMode];
+	}
+	else
+	{
+		return [super exportAttributedString:filteredString
+									  toPath:path
+								imagesFolder:imagesFolder
+								 imagePrefix:imagePrefix
+								HTMLTemplate:theTemplate
+								  contentTag:contentTag 
+									fromPage:thePage
+							 depthCorrection:depthCorrection];
+	}
+}
+
+- (NSString*) exportAttributedString:(NSAttributedString*)str
+                              toPath:(NSString*)path
+                        imagesFolder:(NSString*)imagesFolder
+                         imagePrefix:(NSString*)imagePrefix
+                        HTMLTemplate:(NSMutableString*)theTemplate
+                          contentTag:(NSString*)contentTag
+                            fromPage:(id)thePage
+                     depthCorrection:(int)depthCorrection
+{
+	return [self exportAttributedString:str
+								 toPath:path
+						   imagesFolder:imagesFolder
+							imagePrefix:imagePrefix
+						   HTMLTemplate:theTemplate
+							 contentTag:contentTag
+							   fromPage:thePage
+						depthCorrection:0
+							 exportMode:RWExportModeExport];
 }
 
 @end

@@ -23,8 +23,6 @@ static Markup* sharedMarkupPlugin = nil;
 
 - (id) init
 {
-    LOG_ENTRY;
-    
     if (sharedMarkupPlugin != nil)
     {
         [self autorelease];
@@ -63,8 +61,6 @@ static Markup* sharedMarkupPlugin = nil;
 // This method is called when the plugin is loaded, and the plugin's bundle is passed as an argument. If initialization fails, return NO, and if it goes alright, return YES.
 + (BOOL)initializeClass:(NSBundle*)theBundle
 {
-    LOG_ENTRY;
-    
     bundle = theBundle;
     [bundle retain];
     
@@ -90,15 +86,11 @@ static Markup* sharedMarkupPlugin = nil;
     // This should return an NSEnumerator of all the plugins available, initialized and ready for use.
 + (NSEnumerator*)pluginsAvailable;
 {
-    LOG_ENTRY;
-    
     return nil;
 }
 
 + (NSString*) pluginType
 {
-    LOG_ENTRY;
-    
     return @"Markup";
 }
 
@@ -149,8 +141,6 @@ static Markup* sharedMarkupPlugin = nil;
 
 - (void)setUniqueID:(NSString *)aUniqueID
 {
-    LOG_ENTRY;
-    
     _uniqueID = aUniqueID;
     [_uniqueID retain];
 }
@@ -160,8 +150,6 @@ static NSMenu* markupLanguagesMenu = nil;
 
 + (void) addMarkupMenuItem
 {
-    LOG_ENTRY;
-
     static BOOL addedMarkupTextMenuItem = NO;
     if (addedMarkupTextMenuItem) return;
 
@@ -222,8 +210,6 @@ static NSMenu* markupLanguagesMenu = nil;
 
 - (NSView *)userInteractionAndEditingView
 {
-    LOG_ENTRY;
-    
     return nil;
 }
 
@@ -237,11 +223,7 @@ static NSMutableArray* cachedMarkupStyles = nil;
                                                                   ofType:@"plist"
                                                              inDirectory:@"MarkupFilters"];
         
-        Log(@"filterStylesPropertyListPath: %@", filterStylesPropertyListPath);
-        
         NSArray* filterStylesPropertyList = [NSArray arrayWithContentsOfFile:filterStylesPropertyListPath];
-        
-        Log(@"filterStylesPropertyList: %@", filterStylesPropertyList);
         
         cachedMarkupStyles = [[NSMutableArray alloc] init];
         
@@ -251,14 +233,12 @@ static NSMutableArray* cachedMarkupStyles = nil;
         while(NSDictionary* propertyListEntry = [e nextObject])
         {
             NSString* name = [propertyListEntry objectForKey:@"Name"];
-            Log(@"name: %@", name);
             
 			NSString* filterCommandPath = [propertyListEntry objectForKey:@"FilterCommand"];
 			
             NSString* path = [bundle pathForResource:[filterCommandPath lastPathComponent]
                                               ofType:[propertyListEntry objectForKey:@"FilterCommandExtension"]
                                          inDirectory:[@"MarkupFilters" stringByAppendingPathComponent:[filterCommandPath stringByDeletingLastPathComponent]]];
-            Log(@"path: %@", path);
             
             NSArray* values = [NSArray arrayWithObjects:name, path, nil];
             
@@ -378,17 +358,6 @@ static NSMutableArray* cachedMarkupStyles = nil;
         
         [menuItem setState:[[Markup markupEnabledForFilterStyleInSelectedRange:[menuItem title]] boolValue]];
     }
-}
-
-+ (id) valueForKey:(NSString*)key
-{
-    Log(@"valueForKey: key is %@", key);
-    
-    id retval = [super valueForKey:key];
-
-    Log(@"returning %@", retval);
-    
-    return retval;
 }
 
 @end

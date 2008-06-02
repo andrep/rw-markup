@@ -48,14 +48,14 @@
 		7B05D3A709CBD30B00A3FC99 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/Markup.nib; sourceTree = "<group>"; };
 		7B208D5F0A7B62DD006E1DA8 /* MarkupExport.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MarkupExport.mm; sourceTree = "<group>"; tabWidth = 4; usesTabs = 1; };
 		7B2D97240AECCD360098C6AA /* NSTaskTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSTaskTest.mm; sourceTree = "<group>"; };
-		7B2D972D0AECCE0C0098C6AA /* NSTaskTest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "compiled.mach-o.executable"; path = NSTaskTest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B2D972D0AECCE0C0098C6AA /* NSTaskTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = NSTaskTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B830C300A951402005CEFF4 /* NSObjectAdditions.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NSObjectAdditions.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 1; };
 		7B830C310A951402005CEFF4 /* NSObjectAdditions.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; path = NSObjectAdditions.mm; sourceTree = "<group>"; tabWidth = 4; usesTabs = 1; };
 		7B830C320A951402005CEFF4 /* NSTaskAdditions.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NSTaskAdditions.h; sourceTree = "<group>"; };
 		7B830C330A951402005CEFF4 /* NSTaskAdditions.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; path = NSTaskAdditions.mm; sourceTree = "<group>"; };
 		7B830C350A951402005CEFF4 /* RWPluginFramework.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = RWPluginFramework.h; sourceTree = "<group>"; };
 		7B830C7E0A951452005CEFF4 /* MarkupFilters */ = {isa = PBXFileReference; lastKnownFileType = folder; path = MarkupFilters; sourceTree = "<group>"; };
-		7BA410920BBDE96800377987 /* Mixed Markup and Plain Text.rw3 */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Mixed Markup and Plain Text.rw3"; path = "tests/Mixed Markup and Plain Text.rw3"; sourceTree = "<group>"; };
+		7BA410920BBDE96800377987 /* Mixed Markup and Plain Text.rw3 */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = "Mixed Markup and Plain Text.rw3"; path = "tests/Mixed Markup and Plain Text.rw3"; sourceTree = "<group>"; };
 		7BB486AD09C4300700E2C7BA /* Markup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Markup.h; sourceTree = "<group>"; };
 		7BB486AE09C4300700E2C7BA /* Markup.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Markup.mm; sourceTree = "<group>"; };
 		7BB4874209C83A3A00E2C7BA /* MarkupTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkupTextView.h; sourceTree = "<group>"; };
@@ -204,9 +204,11 @@
 		089C1669FE841209C02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = 1DEB913E08733D840010E9CD /* Build configuration list for PBXProject "Markup" */;
+			compatibilityVersion = "Xcode 2.4";
 			hasScannedForEncodings = 1;
 			mainGroup = 089C166AFE841209C02AAC07 /* Markup */;
 			projectDirPath = "";
+			projectRoot = "";
 			targets = (
 				8D5B49AC048680CD000E48DA /* Markup */,
 				7B2D972C0AECCE0C0098C6AA /* NSTaskTest */,
@@ -359,7 +361,7 @@
 			buildSettings = {
 				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION_MAJOR).$(CURRENT_PROJECT_VERSION_MINOR)";
 				CURRENT_PROJECT_VERSION_MAJOR = 0;
-				CURRENT_PROJECT_VERSION_MINOR = "17α1";
+				CURRENT_PROJECT_VERSION_MINOR = 19;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
@@ -372,7 +374,7 @@
 			buildSettings = {
 				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION_MAJOR).$(CURRENT_PROJECT_VERSION_MINOR)";
 				CURRENT_PROJECT_VERSION_MAJOR = 0;
-				CURRENT_PROJECT_VERSION_MINOR = "17α1";
+				CURRENT_PROJECT_VERSION_MINOR = 19;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;

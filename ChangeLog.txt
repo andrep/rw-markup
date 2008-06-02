@@ -1,6 +1,17 @@
 Markup Plugin Changes
 =====================
 
+Version 0.19
+------------
+
+* Fix a bug where subpages (e.g. blog plugin archives or permalinks) were
+  incorrecly generating paths to other pages.
+
+Version 0.18
+------------
+
+* RapidWeaver 4.0 support.
+
 Version 0.17
 ------------
 

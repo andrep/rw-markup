@@ -437,7 +437,7 @@ RWExportMode;
 						   HTMLTemplate:theTemplate
 							 contentTag:contentTag
 							   fromPage:thePage
-						depthCorrection:0
+						depthCorrection:depthCorrection
 							 exportMode:RWExportModeExport];
 }
 

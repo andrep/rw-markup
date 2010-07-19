@@ -11,11 +11,6 @@ extern "C"
 
 //***************************************************************************
 
-extern "C"
-{
-	extern id RWDocumentForPlugin(id plugin) WEAK_IMPORT_ATTRIBUTE;
-}
-
 @interface NSString (RWStringUtilities)
 - (NSString*)stringEscapedForHTMLElementText;
 @end
@@ -219,18 +214,6 @@ extern "C"
 {
     return [[Markup sharedBundle] pathForResource:@"SmartyPants" ofType:@"pl" inDirectory:@"MarkupFilters"];
 }
-
-//---------------------------------------------------------------------------
-
-typedef enum
-{
-	RWExportModeExport,
-	RWExportModePublish,
-	RWExportModePreview,
-	RWExportModeViewSourceCode,
-	RWExportModeConvertingForWebViewDOM,
-}
-RWExportMode;
 
 //---------------------------------------------------------------------------
 

@@ -135,21 +135,5 @@
 
 @end
 
-//---------------------------------------------------------------------------
-
-@interface NSDictionary (RWMarkupDirective)
-
-- (id)tag;
-- (id)openTag;
-- (id)closeTag;
-- (id)name;
-- (BOOL)cleartags;
-
-@end
-
-//***************************************************************************
-
 extern NSString* kRWTextViewMarkupDirectivesAttributeName;
 extern NSString* kRWTextViewIgnoreFormattingAttributeName;
-
-//***************************************************************************

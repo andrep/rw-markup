@@ -125,19 +125,6 @@ static Markup* sharedMarkupPlugin = nil;
 }
     // This should return a human-readable description of what the plugin does.
 
-- (NSWindow *)documentWindow;
-{
-    return _documentWindow;
-}
-    // Should return stored document window from setDocumentWindow:(NSWindow *)window.
-
-- (void)setDocumentWindow:(NSWindow *)documentWindow
-{
-    _documentWindow = documentWindow;
-    [_documentWindow retain];
-}
-    // RapidWeaver will call this when it loads or shows your plugin's interface. It's so that your plugin can have access to the document window for sheets and the like.
-
 - (NSString *)uniqueID
 {
     return _uniqueID;

@@ -1,8 +1,13 @@
 //***************************************************************************
 
+extern "C"
+{
 #import "Markup.h"
 #import "MarkupTextView.h"
 #import "NSObjectAdditions.h"
+
+#include <objc/runtime.h>
+}
 
 //***************************************************************************
 

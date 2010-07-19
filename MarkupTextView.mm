@@ -2,8 +2,12 @@
 
 #import "Markup.h"
 #import "MarkupTextView.h"
+
+extern "C"
+{
 #import "NSAttributedString+ParagraphTests.h"
 #import "NSTaskAdditions.h"
+}
 
 //***************************************************************************
 

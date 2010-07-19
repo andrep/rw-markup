@@ -167,7 +167,7 @@ static NSMenu* markupLanguagesMenu = nil;
     {
         NSString* markupStyleName = [markupStyleDefinition objectForKey:kMarkupStyleName];
         
-        NSObject<NSMenuItem>* markupMenuItem =
+        NSMenuItem<NSMenuItem>* markupMenuItem =
             [markupLanguagesMenu addItemWithTitle:markupStyleName
                                            action:@selector(applyMarkupAttributeToSelection:)
                                     keyEquivalent:@""];
@@ -176,7 +176,7 @@ static NSMenu* markupLanguagesMenu = nil;
     }
     
     [markupLanguagesMenu addItem:[NSMenuItem separatorItem]];
-    NSObject<NSMenuItem>* useSmartQuotesMenuItem =
+    NSMenuItem<NSMenuItem>* useSmartQuotesMenuItem =
         [markupLanguagesMenu addItemWithTitle:@"Use Smart Quotes"
                                        action:@selector(onToggleSmartQuotes:)
                                 keyEquivalent:@""];

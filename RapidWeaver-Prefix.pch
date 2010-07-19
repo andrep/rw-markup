@@ -9,13 +9,13 @@
 #       define template aTemplate
 #   endif
 
-#   import <RWPluginUtilities/RWAbstractPlugin.h>
+#   import <RWKit/RWAbstractPlugin.h>
 
 #   ifdef __cplusplus
 #       undef template
 #   endif
 
-#   import <RWPluginUtilities/RWPluginInterface.h>
-#   import <RWPluginUtilities/RMHTML.h>
+#   import <RWKit/RWPluginInterface.h>
+#   import <RWKit/RMHTML.h>
 
 #endif

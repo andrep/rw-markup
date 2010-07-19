@@ -311,13 +311,15 @@
 				INFOPLIST_PREPROCESS = YES;
 				INFOPLIST_PREPROCESSOR_DEFINITIONS = "CURRENT_PROJECT_VERSION=$(CURRENT_PROJECT_VERSION)";
 				INSTALL_PATH = "$(HOME)/Library/Application Support/RapidWeaver";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				ONLY_LINK_ESSENTIAL_SYMBOLS = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-framework",
-					RWPluginUtilities,
+					RWKit,
 				);
 				PRODUCT_NAME = Markup;
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
 				WARNING_CFLAGS = "-Wmost";
 				WRAPPER_EXTENSION = rwplugin;
 				ZERO_LINK = YES;
@@ -344,13 +346,15 @@
 				INFOPLIST_PREPROCESS = YES;
 				INFOPLIST_PREPROCESSOR_DEFINITIONS = "CURRENT_PROJECT_VERSION=$(CURRENT_PROJECT_VERSION)";
 				INSTALL_PATH = "$(HOME)/Library/Application Support/RapidWeaver";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				ONLY_LINK_ESSENTIAL_SYMBOLS = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-framework",
-					RWPluginUtilities,
+					RWKit,
 				);
 				PRODUCT_NAME = Markup;
+				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
 				WARNING_CFLAGS = "-Wmost";
 				WRAPPER_EXTENSION = rwplugin;
 			};

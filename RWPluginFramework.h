@@ -4,11 +4,11 @@
 // as the name of an argument to a method in RWAbstractPlugin.h...
 
 #define template aTemplate
-#   import <RWPluginUtilities/RWAbstractPlugin.h>
+#   import <RWKit/RWAbstractPlugin.h>
 #undef template
 
-#import <RWPluginUtilities/RWPluginInterface.h>
-#import <RWPluginUtilities/RMHTML.h>
+#import <RWKit/RWPluginInterface.h>
+#import <RWKit/RMHTML.h>
 
 //***************************************************************************
 

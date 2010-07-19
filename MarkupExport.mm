@@ -36,8 +36,8 @@
 
 - (NSArray*) latestMarkupTags
 {
-	NSData* markupData = [NSData dataWithContentsOfFile:[[NSBundle bundleWithIdentifier:@"com.realmac.rwpluginutilities"] 
-										pathForResource:@"markup" 
+	NSData* markupData = [NSData dataWithContentsOfFile:[[NSBundle bundleWithIdentifier:@"com.realmac.rwkit"] 
+										pathForResource:@"Markup" 
 												 ofType:@"plist"]];
 	
 	NSArray* markup = [NSPropertyListSerialization propertyListFromData:markupData 
@@ -88,7 +88,7 @@
 		if(!foundUncanonicalisedLineEnding) break;
 	}
 	
-	// Read in the latest markup tags from RWPluginUtilities's markup.plist
+	// Read in the latest markup tags from RWKit's markup.plist
 	// file, and turn it into a key-value dictionary so we can look up tag names
 	// quickly
 	

@@ -243,6 +243,7 @@ RWExportMode;
                             fromPage:(id)thePage
                      depthCorrection:(int)depthCorrection
 						  exportMode:(RWExportMode)exportMode
+						   linkStyle:(RWLinkStyle)linkStyle
 {
     NSRange range;
     range.location = 0;
@@ -410,7 +411,8 @@ RWExportMode;
 								  contentTag:contentTag 
 									fromPage:thePage
 							 depthCorrection:depthCorrection
-								  exportMode:exportMode];
+								  exportMode:exportMode
+								   linkStyle:linkStyle];
 	}
 	else
 	{
@@ -421,8 +423,32 @@ RWExportMode;
 								HTMLTemplate:theTemplate
 								  contentTag:contentTag 
 									fromPage:thePage
-							 depthCorrection:depthCorrection];
+							 depthCorrection:depthCorrection
+								  exportMode:exportMode
+								   linkStyle:linkStyle];
 	}
+}
+
+- (NSString*) exportAttributedString:(NSAttributedString*)str
+                              toPath:(NSString*)path
+                        imagesFolder:(NSString*)imagesFolder
+                         imagePrefix:(NSString*)imagePrefix
+                        HTMLTemplate:(NSMutableString*)theTemplate
+                          contentTag:(NSString*)contentTag
+                            fromPage:(id)thePage
+                     depthCorrection:(int)depthCorrection
+						  exportMode:(RWExportMode)exportMode
+{
+	return [self exportAttributedString:str
+								 toPath:path
+						   imagesFolder:imagesFolder
+							imagePrefix:imagePrefix
+						   HTMLTemplate:theTemplate
+							 contentTag:contentTag
+							   fromPage:thePage
+						depthCorrection:depthCorrection
+							 exportMode:exportMode
+							  linkStyle:RWLinkStyleAbsolute];
 }
 
 - (NSString*) exportAttributedString:(NSAttributedString*)str

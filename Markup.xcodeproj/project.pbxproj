@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 42;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -200,9 +200,16 @@
 /* Begin PBXProject section */
 		089C1669FE841209C02AAC07 /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+			};
 			buildConfigurationList = 1DEB913E08733D840010E9CD /* Build configuration list for PBXProject "Markup" */;
-			compatibilityVersion = "Xcode 2.4";
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+			);
 			mainGroup = 089C166AFE841209C02AAC07 /* Markup */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -238,7 +245,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "case \"$BUILD_STYLE\" in\n    *Release*);;\n    *) exit;;\nesac\n\nbuild_dir=\"$SYMROOT/$BUILD_STYLE\"\nzip=\"$build_dir/$(basename \"$FULL_PRODUCT_NAME\" .\"$WRAPPER_EXTENSION\")-\"$CURRENT_PROJECT_VERSION\".zip\"\n\ncd \"$build_dir\"\n\nrm -f \"$zip\"\n/usr/bin/zip -9qry \"$zip\" \"$FULL_PRODUCT_NAME\"\n";
+			shellScript = "case \"$BUILD_STYLE\" in\n*Release*)\nbuild_dir=\"$SYMROOT/$CONFIGURATION\"\nzip=\"$build_dir/$(basename \"$FULL_PRODUCT_NAME\" .\"$WRAPPER_EXTENSION\")-\"$CURRENT_PROJECT_VERSION\".zip\"\ncd \"$build_dir\"\nrm -f \"$zip\"\n/usr/bin/zip -9qry \"$zip\" \"$FULL_PRODUCT_NAME\"\n;;\n*)\nmarkup_debug_plugin=\"$HOME/Library/Application Support/RapidWeaver/Markup-debug.rwplugin\"\n[ -L \"$markup_debug_plugin\" ] && rm \"$markup_debug_plugin\"\nln -sf \"$SYMROOT/$CONFIGURATION/$FULL_PRODUCT_NAME\" \"$markup_debug_plugin\"\n;;\nesac\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -290,15 +297,9 @@
 		1DEB913B08733D840010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(RapidWeaverPath)/Contents/Frameworks",
-					/Applications/RapidWeaver.app/Contents/Frameworks,
-				);
+				FRAMEWORK_SEARCH_PATHS = /Applications/RapidWeaver.app/Contents/Frameworks;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RapidWeaver-Prefix.pch";
@@ -307,50 +308,34 @@
 				INFOPLIST_PREPROCESS = YES;
 				INFOPLIST_PREPROCESSOR_DEFINITIONS = "CURRENT_PROJECT_VERSION=$(CURRENT_PROJECT_VERSION)";
 				INSTALL_PATH = "$(HOME)/Library/Application Support/RapidWeaver";
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
-				ONLY_LINK_ESSENTIAL_SYMBOLS = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-framework",
 					RWKit,
 				);
 				PRODUCT_NAME = Markup;
-				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
 				WARNING_CFLAGS = "-Wmost";
 				WRAPPER_EXTENSION = rwplugin;
-				ZERO_LINK = YES;
 			};
 			name = Debug;
 		};
 		1DEB913C08733D840010E9CD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(RapidWeaverPath)/Contents/Frameworks",
-					/Applications/RapidWeaver.app/Contents/Frameworks,
-				);
+				FRAMEWORK_SEARCH_PATHS = /Applications/RapidWeaver.app/Contents/Frameworks;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RapidWeaver-Prefix.pch";
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_PREPROCESS = YES;
 				INFOPLIST_PREPROCESSOR_DEFINITIONS = "CURRENT_PROJECT_VERSION=$(CURRENT_PROJECT_VERSION)";
 				INSTALL_PATH = "$(HOME)/Library/Application Support/RapidWeaver";
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
-				ONLY_LINK_ESSENTIAL_SYMBOLS = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-framework",
 					RWKit,
 				);
 				PRODUCT_NAME = Markup;
-				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
 				WARNING_CFLAGS = "-Wmost";
 				WRAPPER_EXTENSION = rwplugin;
 			};
@@ -359,26 +344,37 @@
 		1DEB913F08733D840010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION_MAJOR).$(CURRENT_PROJECT_VERSION_MINOR)";
 				CURRENT_PROJECT_VERSION_MAJOR = 0;
-				CURRENT_PROJECT_VERSION_MINOR = 19;
+				CURRENT_PROJECT_VERSION_MINOR = 20;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				PREBINDING = NO;
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx10.8;
+				VALID_ARCHS = i386;
 			};
 			name = Debug;
 		};
 		1DEB914008733D840010E9CD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION_MAJOR).$(CURRENT_PROJECT_VERSION_MINOR)";
 				CURRENT_PROJECT_VERSION_MAJOR = 0;
-				CURRENT_PROJECT_VERSION_MINOR = 19;
+				CURRENT_PROJECT_VERSION_MINOR = 20;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				PREBINDING = NO;
-				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx10.8;
+				VALID_ARCHS = i386;
 			};
 			name = Release;
 		};

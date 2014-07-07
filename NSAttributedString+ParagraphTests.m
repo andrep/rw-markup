@@ -39,7 +39,7 @@ static inline BOOL IsNewlineCharacter(const unichar c)
 	{
 		const NSRange twoCharacterRange = NSMakeRange(range.location+i, 2);
 		
-		if(twoCharacterRange.location < 0 || NSMaxRange(twoCharacterRange) >= [self length]) continue;
+		if(NSMaxRange(twoCharacterRange) >= [self length]) continue;
 		
 		NSString* twoCharacters = [[self string] substringWithRange:twoCharacterRange];
 		
@@ -74,7 +74,7 @@ static inline BOOL IsNewlineCharacter(const unichar c)
 	{
 		const NSRange twoCharactersRange = NSMakeRange(indexAtEndOfRange-2, 2);
 		
-		if(twoCharactersRange.location < 0 || NSMaxRange(twoCharactersRange) >= [self length]) continue;
+		if(NSMaxRange(twoCharactersRange) >= [self length]) continue;
 
 		NSString* twoCharacters = [[self string] substringWithRange:twoCharactersRange];
 		

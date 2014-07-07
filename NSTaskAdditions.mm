@@ -19,23 +19,15 @@
 
 + (NSString*) pathToEmptyTemporaryFile
 {
-    char* const pathTemplate = strdup("/tmp/temp.XXXXXXXXXX");
-    char* const cPath = mktemp(pathTemplate);
+    char* cPath = strdup("/tmp/temp.XXXXXX");
+    const int fileDescriptor = mkstemp(cPath);
     
     NSString* path = [NSString stringWithUTF8String:cPath];
     
-    const int fileDescriptor = open(cPath, O_WRONLY|O_CREAT|O_EXCL, S_IRUSR|S_IWUSR);
-    if(fileDescriptor == -1)
-    {
-        perror("open failed");
-        
-        return nil;
-    }
-        
     const int closeReturnValue = close(fileDescriptor);
     if(closeReturnValue != 0) NSLog(@"fclose() returned %d instead of 0?", closeReturnValue);
     
-    free(pathTemplate);
+    free(cPath);
     
     return path;
 }

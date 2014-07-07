@@ -92,8 +92,8 @@
 
     NSData* stdoutData = [[temporaryFileReader readDataToEndOfFile] retain];
 
-    [[NSFileManager defaultManager] removeFileAtPath:stdinTemporaryFilePath handler:nil];
-    [[NSFileManager defaultManager] removeFileAtPath:stdoutTemporaryFilePath handler:nil];
+    [[NSFileManager defaultManager] removeItemAtPath:stdinTemporaryFilePath error:nil];
+    [[NSFileManager defaultManager] removeItemAtPath:stdoutTemporaryFilePath error:nil];
     
     [pool release];
     

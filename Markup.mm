@@ -13,8 +13,6 @@ extern "C"
 
 @implementation Markup
 
-const int kClearFormattingMenuItemTag = 6000;
-
 static NSBundle* bundle = nil;
 
 // TODO: Do we need to make this a singleton?

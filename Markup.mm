@@ -183,9 +183,6 @@ static NSMenu* markupLanguagesMenu = nil;
     [markupLanguagesMenu addItemWithTitle:@"Dump Attributes"
                                    action:@selector(onDumpAttributes:)
                             keyEquivalent:@""];
-    [markupLanguagesMenu addItemWithTitle:@"New Export"
-                                   action:@selector(onNewExport:)
-                            keyEquivalent:@""];
     
     NSMenuItem* markupLanguagesMenuItem = [[NSMenuItem alloc] init];
     [markupLanguagesMenuItem setTitle:@"Markup Language"];

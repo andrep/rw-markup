@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		7B05D3A809CBD30B00A3FC99 /* Markup.nib in Resources */ = {isa = PBXBuildFile; fileRef = 7B05D3A609CBD30B00A3FC99 /* Markup.nib */; };
-		7B208D600A7B62DD006E1DA8 /* MarkupExport.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7B208D5F0A7B62DD006E1DA8 /* MarkupExport.mm */; };
 		7B2D97320AECCE170098C6AA /* NSTaskTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7B2D97240AECCD360098C6AA /* NSTaskTest.mm */; };
 		7B2D97330AECCE180098C6AA /* NSTaskAdditions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7B830C330A951402005CEFF4 /* NSTaskAdditions.mm */; };
 		7B2D973E0AECCE910098C6AA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
@@ -46,7 +45,6 @@
 		089C167EFE841241C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		7B05D3A709CBD30B00A3FC99 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/Markup.nib; sourceTree = "<group>"; };
-		7B208D5F0A7B62DD006E1DA8 /* MarkupExport.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MarkupExport.mm; sourceTree = "<group>"; tabWidth = 4; usesTabs = 1; };
 		7B2D97240AECCD360098C6AA /* NSTaskTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSTaskTest.mm; sourceTree = "<group>"; };
 		7B2D972D0AECCE0C0098C6AA /* NSTaskTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = NSTaskTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B830C300A951402005CEFF4 /* NSObjectAdditions.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NSObjectAdditions.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 1; };
@@ -125,7 +123,6 @@
 			children = (
 				7BB486AD09C4300700E2C7BA /* Markup.h */,
 				7BB486AE09C4300700E2C7BA /* Markup.mm */,
-				7B208D5F0A7B62DD006E1DA8 /* MarkupExport.mm */,
 				7BB4874209C83A3A00E2C7BA /* MarkupTextView.h */,
 				7BB4874309C83A3A00E2C7BA /* MarkupTextView.mm */,
 				7BBAECF80B97CAF40022222C /* NSAttributedString+ParagraphTests.h */,
@@ -262,7 +259,6 @@
 			files = (
 				7BB486AF09C4300700E2C7BA /* Markup.mm in Sources */,
 				7BB4874409C83A3B00E2C7BA /* MarkupTextView.mm in Sources */,
-				7B208D600A7B62DD006E1DA8 /* MarkupExport.mm in Sources */,
 				7B830C360A951402005CEFF4 /* NSObjectAdditions.mm in Sources */,
 				7B830C370A951402005CEFF4 /* NSTaskAdditions.mm in Sources */,
 				7BBAECFA0B97CAF40022222C /* NSAttributedString+ParagraphTests.m in Sources */,

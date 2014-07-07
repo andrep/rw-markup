@@ -21,7 +21,7 @@ extern "C"
 
 //***************************************************************************
 
-@interface Markup : RWAbstractPlugin
+@interface Markup : RWAbstractPlugin<NSMenuDelegate>
 {
 @public
     BOOL usingSmartQuotes;

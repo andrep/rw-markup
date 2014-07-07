@@ -66,9 +66,12 @@ static Markup* sharedMarkupPlugin = nil;
 {
     bundle = theBundle;
     [bundle retain];
-    
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
     [MarkupTextView poseAsClass:[RWTextView class]];
     [MarkupHTML poseAsClass:[RMHTML class]];
+#pragma GCC diagnostic pop
     
     return YES;
 }

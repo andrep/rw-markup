@@ -11,10 +11,6 @@ extern "C"
 
 //***************************************************************************
 
-@interface NSString (RWStringUtilities)
-- (NSString*)stringEscapedForHTMLElementText;
-@end
-
 @implementation MarkupTextView
 
 - (void) removeFormattingFromSelection:(id)sender

@@ -13,7 +13,7 @@ extern "C"
 
 #if ENABLE_LOGGING
 #   define Log NSLog
-#   define LOG_ENTRY NSLog(@"Entered: %s (%@:%d)", __func__, [[NSString stringWithCString:__FILE__] lastPathComponent], __LINE__);
+#   define LOG_ENTRY NSLog(@"Entered: %s (%@:%d)", __func__, [[NSString stringWithUTF8String:__FILE__] lastPathComponent], __LINE__);
 #else
 #   define Log(...) do { } while(0);
 #   define LOG_ENTRY do { } while(0);

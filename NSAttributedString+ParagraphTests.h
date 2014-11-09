@@ -6,8 +6,8 @@
 
 @interface NSAttributedString (ParagraphTests)
 
-- (BOOL) isRangeAtStartOfParagraph:(const NSRange)range;
-- (BOOL) isRangeAtEndOfParagraph:(const NSRange)range;
+- (BOOL)isRangeAtStartOfParagraph:(const NSRange)range;
+- (BOOL)isRangeAtEndOfParagraph:(const NSRange)range;
 
 @end
 

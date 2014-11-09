@@ -10,22 +10,22 @@
 
 @interface MarkupTextView : RWTextView
 
-- (void) onMarkupLanguageHelp:(id)sender;
-- (void) onToggleSmartQuotes:(id)sender;
-- (void) onDumpAttributes:(id)sender;
+- (void)onMarkupLanguageHelp:(id)sender;
+- (void)onToggleSmartQuotes:(id)sender;
+- (void)onDumpAttributes:(id)sender;
 
-- (NSNumber*) markupEnabledForFilterStyleInSelectedRange:(NSString*)markupStyleName;
+- (NSNumber*)markupEnabledForFilterStyleInSelectedRange:
+        (NSString*)markupStyleName;
 
 @end
 
 //***************************************************************************
 
-@interface MarkupHTML : RMHTML
-{
+@interface MarkupHTML : RMHTML {
 }
 
-- (NSString*) pathToFilterCommandForMarkupStyleName:(NSString*)markupStyleName;
-- (NSString*) pathToSmartQuotesFilterCommand;
+- (NSString*)pathToFilterCommandForMarkupStyleName:(NSString*)markupStyleName;
+- (NSString*)pathToSmartQuotesFilterCommand;
 
 @end
 

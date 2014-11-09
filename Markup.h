@@ -1,7 +1,6 @@
 //***************************************************************************
 
-extern "C"
-{
+extern "C" {
 #import <Cocoa/Cocoa.h>
 
 #import "RWPluginFramework.h"
@@ -12,29 +11,36 @@ extern "C"
 #pragma mark Logging
 
 #if ENABLE_LOGGING
-#   define Log NSLog
-#   define LOG_ENTRY NSLog(@"Entered: %s (%@:%d)", __func__, [[NSString stringWithUTF8String:__FILE__] lastPathComponent], __LINE__);
+#define Log NSLog
+#define LOG_ENTRY                                                     \
+  NSLog(@"Entered: %s (%@:%d)", __func__,                             \
+        [[NSString stringWithUTF8String:__FILE__] lastPathComponent], \
+        __LINE__);
 #else
-#   define Log(...) do { } while(0);
-#   define LOG_ENTRY do { } while(0);
+#define Log(...) \
+  do {           \
+  } while (0);
+#define LOG_ENTRY \
+  do {            \
+  } while (0);
 #endif
 
 //***************************************************************************
 
-@interface Markup : RWAbstractPlugin<NSMenuDelegate>
-{
-@public
-    BOOL usingSmartQuotes;
+@interface Markup : RWAbstractPlugin<NSMenuDelegate> {
+ @public
+  BOOL usingSmartQuotes;
 }
 
-+ (Markup*) sharedMarkupPlugin;
-+ (NSBundle*) sharedBundle;
++ (Markup*)sharedMarkupPlugin;
++ (NSBundle*)sharedBundle;
 
-+ (NSArray*) markupStyles;
++ (NSArray*)markupStyles;
 
-+ (NSNumber*) markupEnabledForFilterStyleInSelectedRange:(NSString*)markupStyleName;
++ (NSNumber*)markupEnabledForFilterStyleInSelectedRange:
+        (NSString*)markupStyleName;
 
-+ (void) addMarkupMenuItem;
++ (void)addMarkupMenuItem;
 
 @end
 

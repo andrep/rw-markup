@@ -4,7 +4,7 @@
 // as the name of an argument to a method in RWAbstractPlugin.h...
 
 #define template aTemplate
-#   import <RWKit/RWAbstractPlugin.h>
+#import <RWKit/RWAbstractPlugin.h>
 #undef template
 
 //#import <RWKit/RWPluginInterface.h>
@@ -16,9 +16,9 @@
 
 //---------------------------------------------------------------------------
 
-@interface RWPage : NSObject <NSCoding>
+@interface RWPage : NSObject<NSCoding>
 
-- (NSDictionary*) pageAssets;
+- (NSDictionary*)pageAssets;
 
 @end
 
@@ -26,11 +26,11 @@
 
 @interface RWLink : NSObject
 
-- (NSString*) href;
-- (NSString*) anchor;
-- (NSString*) name;
-- (NSString*) target;
-- (BOOL) internal;
+- (NSString*)href;
+- (NSString*)anchor;
+- (NSString*)name;
+- (NSString*)target;
+- (BOOL)internal;
 
 @end
 
@@ -38,7 +38,7 @@
 
 @interface MyDocument : NSDocument
 
-- (NSWindow*) window;
+- (NSWindow*)window;
 
 @end
 
@@ -46,10 +46,10 @@
 
 @interface RWTheme
 
-- (NSString*) themeName;
-- (NSString*) path;
-- (id) html;
-- (id) themeFiles;
+- (NSString*)themeName;
+- (NSString*)path;
+- (id)html;
+- (id)themeFiles;
 
 @end
 
@@ -95,11 +95,10 @@
 
 //---------------------------------------------------------------------------
 
-@interface RWTextView : NSTextView
-{
-    NSColor *_ignoreBackground;
-    NSColor *_htmlBackground;
-    unsigned int _addedNotificationObserver:1;
+@interface RWTextView : NSTextView {
+  NSColor* _ignoreBackground;
+  NSColor* _htmlBackground;
+  unsigned int _addedNotificationObserver : 1;
 }
 
 - (id)initWithFrame:(NSRect)fp8;

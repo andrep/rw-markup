@@ -23,9 +23,8 @@
 
   NSString* path = [NSString stringWithUTF8String:cPath];
 
-  const NSInteger closeReturnValue = close(fileDescriptor);
+  const int closeReturnValue = close(fileDescriptor);
   if (closeReturnValue != 0)
-#warning 64BIT: Check formatting arguments
     NSLog(@"fclose() returned %d instead of 0?", closeReturnValue);
 
   free(cPath);

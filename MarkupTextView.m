@@ -135,7 +135,8 @@
                                   longestEffectiveRange:&range
                                                 inRange:rangeLimit];
 
-    [string appendFormat:@"Range %lu-%lu\n", (unsigned long)range.location, (unsigned long)range.length];
+    [string appendFormat:@"Range %lu-%lu\n", (unsigned long)range.location,
+                         (unsigned long)range.length];
 
     if (dict == nil) {
       [string appendString:@"Attribute: (none)\n"];

@@ -40,9 +40,8 @@ static NSConditionLock* lock = nil;
                                       standardInput:testData];
 
 #if 0
-#warning 64BIT: Check formatting arguments
-    NSLog(@"Got data (%u): %@",
-          [data length],
+    NSLog(@"Got data (%lu): %@",
+          (unsigned long)[data length],
           [NSString stringWithCString:static_cast<const char*>([data bytes]) length:[data length]]);
 #endif
 
@@ -76,8 +75,7 @@ NSInteger main(const NSInteger argc, const char* const argv[]) {
 
     [foo release];
 
-#warning 64BIT: Check formatting arguments
-    NSLog(@"At iteration %d", i);
+    NSLog(@"At iteration %ld", (long)i);
   }
 
   [pool release];

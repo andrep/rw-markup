@@ -8,24 +8,21 @@
 
 //***************************************************************************
 
-@interface MarkupTextView : RWTextView
+@interface RWTextView (MarkupTextView)
 
-- (void)onMarkupLanguageHelp:(id)sender;
 - (void)onToggleSmartQuotes:(id)sender;
 - (void)onDumpAttributes:(id)sender;
 
-- (NSNumber*)markupEnabledForFilterStyleInSelectedRange:
-        (NSString*)markupStyleName;
+- (NSNumber *)markupEnabledForFilterStyleInSelectedRange:(NSString *)markupStyleName;
 
 @end
 
 //***************************************************************************
 
-@interface MarkupHTML : RMHTML {
-}
+@interface RMHTML (MarkupHTML)
 
-- (NSString*)pathToFilterCommandForMarkupStyleName:(NSString*)markupStyleName;
-- (NSString*)pathToSmartQuotesFilterCommand;
+- (NSString *)pathToFilterCommandForMarkupStyleName:(NSString *)markupStyleName;
+- (NSString *)pathToSmartQuotesFilterCommand;
 
 @end
 

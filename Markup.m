@@ -34,10 +34,9 @@ static Markup* sharedMarkupPlugin = nil;
 }
 
 - (void)dealloc {
-  [[NSNotificationCenter defaultCenter]
-      removeObserver:self
-                name:NSApplicationDidFinishLaunchingNotification
-              object:nil];
+  [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                  name:NSApplicationDidFinishLaunchingNotification
+                                                object:nil];
 
   [super dealloc];
 }
@@ -57,17 +56,14 @@ static Markup* sharedMarkupPlugin = nil;
   bundle = theBundle;
   [bundle retain];
 
-  [MarkupTextView poseAsClass:[RWTextView class]];
-
   return YES;
 }
 
 + (void)initialize {
-  [[NSNotificationCenter defaultCenter]
-      addObserver:self
-         selector:@selector(applicationDidFinishLaunching:)
-             name:NSApplicationDidFinishLaunchingNotification
-           object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(applicationDidFinishLaunching:)
+                                               name:NSApplicationDidFinishLaunchingNotification
+                                             object:nil];
 }
 
 + (void)applicationDidFinishLaunching:(NSNotification*)aNotification {
@@ -130,15 +126,14 @@ static NSMenu* markupLanguagesMenu = nil;
   [markupLanguagesMenu setDelegate:[self sharedMarkupPlugin]];
   [markupLanguagesMenu setAutoenablesItems:YES];
 
-  for (NSDictionary *markupStyleDefinition in [Markup markupStyles]) {
-    NSString* markupStyleName =
-    [markupStyleDefinition objectForKey:kMarkupStyleName];
+  for (NSDictionary* markupStyleDefinition in [Markup markupStyles]) {
+    NSString* markupStyleName = [markupStyleDefinition objectForKey:kMarkupStyleName];
 
-    NSMenuItem* markupMenuItem = [markupLanguagesMenu
-                                  addItemWithTitle:markupStyleName
-                                  action:@selector(applyMarkupAttributeToSelection:)
-                                  keyEquivalent:@""];
-    
+    NSMenuItem* markupMenuItem =
+        [markupLanguagesMenu addItemWithTitle:markupStyleName
+                                       action:@selector(applyMarkupAttributeToSelection:)
+                                keyEquivalent:@""];
+
     [markupMenuItem setTag:kMarkupTextMenuItemTag];
   }
 
@@ -156,12 +151,6 @@ static NSMenu* markupLanguagesMenu = nil;
                                forKey:@"usingSmartQuotes"];
   [useSmartQuotesMenuItem setState:NSOnState];
 
-  // FIXME: Replace ... below with proper ellipsis character
-  [markupLanguagesMenu addItem:[NSMenuItem separatorItem]];
-  [markupLanguagesMenu addItemWithTitle:@"Help..."
-                                 action:@selector(onMarkupLanguageHelp:)
-                          keyEquivalent:@""];
-
   [markupLanguagesMenu addItem:[NSMenuItem separatorItem]];
   [markupLanguagesMenu addItemWithTitle:@"Dump Attributes"
                                  action:@selector(onDumpAttributes:)
@@ -169,8 +158,7 @@ static NSMenu* markupLanguagesMenu = nil;
 
   NSMenuItem* markupLanguagesMenuItem = [[NSMenuItem alloc] init];
   [markupLanguagesMenuItem setTitle:@"Markup Language"];
-  [markupLanguagesMenuItem
-      setAction:@selector(applyMarkupAttributeToSelection:)];
+  [markupLanguagesMenuItem setAction:@selector(applyMarkupAttributeToSelection:)];
   [markupLanguagesMenuItem setSubmenu:markupLanguagesMenu];
 
   NSMenu* mainMenu = [[NSApplication sharedApplication] mainMenu];
@@ -191,37 +179,30 @@ static NSMutableArray* cachedMarkupStyles = nil;
 + (NSArray*)markupStyles {
   if (cachedMarkupStyles == nil) {
     NSString* filterStylesPropertyListPath =
-        [bundle pathForResource:@"MarkupFilters"
-                         ofType:@"plist"
-                    inDirectory:@"MarkupFilters"];
+        [bundle pathForResource:@"MarkupFilters" ofType:@"plist" inDirectory:@"MarkupFilters"];
 
     NSArray* filterStylesPropertyList =
         [NSArray arrayWithContentsOfFile:filterStylesPropertyListPath];
 
     cachedMarkupStyles = [[NSMutableArray alloc] init];
 
-    NSArray* keys = [NSArray
-        arrayWithObjects:kMarkupStyleName, kMarkupStyleFilterCommand, nil];
+    NSArray* keys = [NSArray arrayWithObjects:kMarkupStyleName, kMarkupStyleFilterCommand, nil];
 
     for (NSDictionary* propertyListEntry in filterStylesPropertyList) {
       NSString* name = [propertyListEntry objectForKey:@"Name"];
 
-      NSString* filterCommandPath =
-          [propertyListEntry objectForKey:@"FilterCommand"];
+      NSString* filterCommandPath = [propertyListEntry objectForKey:@"FilterCommand"];
 
-      NSString* path = [bundle
-          pathForResource:[filterCommandPath lastPathComponent]
-                   ofType:[propertyListEntry
-                              objectForKey:@"FilterCommandExtension"]
-              inDirectory:[@"MarkupFilters"
-                              stringByAppendingPathComponent:
-                                  [filterCommandPath
-                                          stringByDeletingLastPathComponent]]];
+      NSString* path =
+          [bundle pathForResource:[filterCommandPath lastPathComponent]
+                           ofType:[propertyListEntry objectForKey:@"FilterCommandExtension"]
+                      inDirectory:[@"MarkupFilters"
+                                      stringByAppendingPathComponent:
+                                          [filterCommandPath stringByDeletingLastPathComponent]]];
 
       NSArray* values = [NSArray arrayWithObjects:name, path, nil];
 
-      NSDictionary* markupStyle =
-          [NSDictionary dictionaryWithObjects:values forKeys:keys];
+      NSDictionary* markupStyle = [NSDictionary dictionaryWithObjects:values forKeys:keys];
       [cachedMarkupStyles addObject:markupStyle];
     }
   }
@@ -325,16 +306,11 @@ static NSMutableArray* cachedMarkupStyles = nil;
   return self;
 }
 
-+ (NSNumber*)markupEnabledForFilterStyleInSelectedRange:
-                 (NSString*)markupStyleName {
-  NSResponder* firstResponder =
-      [[[NSApplication sharedApplication] keyWindow] firstResponder];
-  if ([firstResponder
-          respondsToSelector:@selector(
-                                 markupEnabledForFilterStyleInSelectedRange:)])
-    return [firstResponder
-        performSelector:@selector(markupEnabledForFilterStyleInSelectedRange:)
-             withObject:markupStyleName];
++ (NSNumber*)markupEnabledForFilterStyleInSelectedRange:(NSString*)markupStyleName {
+  NSResponder* firstResponder = [[[NSApplication sharedApplication] keyWindow] firstResponder];
+  if ([firstResponder respondsToSelector:@selector(markupEnabledForFilterStyleInSelectedRange:)])
+    return [firstResponder performSelector:@selector(markupEnabledForFilterStyleInSelectedRange:)
+                                withObject:markupStyleName];
   else
     return nil;
 }
@@ -345,8 +321,8 @@ static NSMutableArray* cachedMarkupStyles = nil;
   for (NSMenuItem* menuItem in menuItems) {
     if ([menuItem tag] != kMarkupTextMenuItemTag) continue;
 
-    [menuItem setState:[[Markup markupEnabledForFilterStyleInSelectedRange:
-                                    [menuItem title]] boolValue]];
+    [menuItem
+        setState:[[Markup markupEnabledForFilterStyleInSelectedRange:[menuItem title]] boolValue]];
   }
 }
 

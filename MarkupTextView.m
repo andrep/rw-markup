@@ -1,5 +1,7 @@
 //***************************************************************************
 
+#import "jrswizzle/JRSwizzle.h"
+
 #import "Markup.h"
 #import "MarkupTextView.h"
 
@@ -8,77 +10,81 @@
 
 //***************************************************************************
 
-@implementation MarkupTextView
+@implementation RWTextView (MarkupTextView)
 
 + (void)load {
-  [RWTextView jr_swizzle:@selector(removeFormattingFromSelection:) withMethod:@selector(removeFormattingFromSelection)];
+  NSArray *swizzledMethodNames = @[
+    @"removeFormattingFromSelection:",
+    @"drawBackgroundForCharactersInRange:withColour:",
+    @"applyMarkupAttributeToSelection:"
+  ];
+
+  for (NSString *methodName in swizzledMethodNames) {
+    NSError *error = nil;
+    BOOL didSwizzle = [RWTextView
+        jr_swizzleMethod:NSSelectorFromString(methodName)
+              withMethod:NSSelectorFromString([NSString stringWithFormat:@"mtv_%@", methodName])
+                   error:&error];
+    if (!didSwizzle) {
+      Log(@"Swizzle of %@ failed: %@", methodName, [error localizedDescription]);
+    }
+  }
 }
 
-- (void)removeFormattingFromSelection:(id)sender {
+- (void)mtv_removeFormattingFromSelection:(id)sender {
   [[self textStorage] removeAttribute:kRWTextViewMarkupDirectivesAttributeName
                                 range:[self selectedRange]];
 
-  [super removeFormattingFromSelection:sender];
+  [self mtv_removeFormattingFromSelection:sender];
 }
 
-- (void)drawBackgroundForCharactersInRange:(NSRange)range
-                                withColour:(NSColor*)colour {
-  NSDictionary* attributeValue =
+- (void)mtv_drawBackgroundForCharactersInRange:(NSRange)range withColour:(NSColor *)colour {
+  NSDictionary *attributeValue =
       [[self textStorage] attribute:kRWTextViewMarkupDirectivesAttributeName
                             atIndex:range.location
                      effectiveRange:NULL];
 
   if ([[attributeValue objectForKey:@"name"] isEqualTo:@"filter"]) {
-    NSColor* transparentBlue =
+    NSColor *transparentBlue =
         [NSColor colorWithCalibratedRed:0.0f green:0.2f blue:1.0f alpha:0.1f];
-    [super drawBackgroundForCharactersInRange:range withColour:transparentBlue];
+    [self mtv_drawBackgroundForCharactersInRange:range withColour:transparentBlue];
   } else {
-    [super drawBackgroundForCharactersInRange:range withColour:colour];
+    [self mtv_drawBackgroundForCharactersInRange:range withColour:colour];
   }
 }
 
-- (IBAction)applyMarkupAttributeToSelection:(id)sender {
+- (IBAction)mtv_applyMarkupAttributeToSelection:(id)sender {
   if ([sender tag] == kMarkupTextMenuItemTag) {
     NSRange range = [self selectedRange];
 
-    id maybeAttribute =
-        [[self textStorage] attribute:kRWTextViewMarkupDirectivesAttributeName
-                              atIndex:range.location
-                       effectiveRange:NULL];
+    id maybeAttribute = [[self textStorage] attribute:kRWTextViewMarkupDirectivesAttributeName
+                                              atIndex:range.location
+                                       effectiveRange:NULL];
 
     if ([[maybeAttribute objectForKey:@"style"] isEqualTo:[sender title]]) {
-      [[self textStorage]
-          removeAttribute:kRWTextViewMarkupDirectivesAttributeName
-                    range:range];
+      [[self textStorage] removeAttribute:kRWTextViewMarkupDirectivesAttributeName range:range];
       [[self textStorage] removeAttribute:NSFontAttributeName range:range];
     } else {
-      [[self textStorage]
-          removeAttribute:kRWTextViewMarkupDirectivesAttributeName
-                    range:range];
+      [[self textStorage] removeAttribute:kRWTextViewMarkupDirectivesAttributeName range:range];
 
-      NSString* markupStyle = [sender title];
+      NSString *markupStyle = [sender title];
 
-      NSDictionary* markupFilterAttribute = [NSDictionary
-          dictionaryWithObjectsAndKeys:@"filter", @"name", markupStyle,
-                                       @"style", nil];
+      NSDictionary *markupFilterAttribute = [NSDictionary
+          dictionaryWithObjectsAndKeys:@"filter", @"name", markupStyle, @"style", nil];
 
-      NSDictionary* markupFilterAttributes = [NSDictionary
-          dictionaryWithObjectsAndKeys:
-              markupFilterAttribute, kRWTextViewMarkupDirectivesAttributeName,
-              [NSFont fontWithName:@"Monaco" size:10.0], NSFontAttributeName,
-              markupStyle, NSToolTipAttributeName, nil];
+      NSDictionary *markupFilterAttributes =
+          [NSDictionary dictionaryWithObjectsAndKeys:markupFilterAttribute,
+                                                     kRWTextViewMarkupDirectivesAttributeName,
+                                                     [NSFont fontWithName:@"Monaco" size:10.0],
+                                                     NSFontAttributeName, markupStyle,
+                                                     NSToolTipAttributeName, nil];
 
       [[self textStorage] addAttributes:markupFilterAttributes range:range];
 
-      [[self textStorage]
-          removeAttribute:kRWTextViewIgnoreFormattingAttributeName
-                    range:range];
-      [[self textStorage] removeAttribute:NSParagraphStyleAttributeName
-                                    range:range];
-      [[self textStorage] removeAttribute:NSForegroundColorAttributeName
-                                    range:range];
-      [[self textStorage] removeAttribute:NSBackgroundColorAttributeName
-                                    range:range];
+      [[self textStorage] removeAttribute:kRWTextViewIgnoreFormattingAttributeName range:range];
+      [[self textStorage] removeAttribute:NSParagraphStyleAttributeName range:range];
+      [[self textStorage] removeAttribute:NSForegroundColorAttributeName range:range];
+      [[self textStorage] removeAttribute:NSBackgroundColorAttributeName range:range];
 
       // Remove any attributes for attachments
 
@@ -87,28 +93,22 @@
       for (NSUInteger textAttachmentLocation = range.location;
            textAttachmentLocation < NSMaxRange(range);
            textAttachmentLocation = NSMaxRange(textAttachmentRange)) {
-        NSDictionary* maybeTextAttachment =
-            [[self textStorage] attribute:NSAttachmentAttributeName
-                                  atIndex:textAttachmentLocation
-                    longestEffectiveRange:&textAttachmentRange
-                                  inRange:range];
+        NSDictionary *maybeTextAttachment = [[self textStorage] attribute:NSAttachmentAttributeName
+                                                                  atIndex:textAttachmentLocation
+                                                    longestEffectiveRange:&textAttachmentRange
+                                                                  inRange:range];
 
         if (maybeTextAttachment != nil) {
-          [[self textStorage]
-              removeAttribute:kRWTextViewMarkupDirectivesAttributeName
-                        range:textAttachmentRange];
+          [[self textStorage] removeAttribute:kRWTextViewMarkupDirectivesAttributeName
+                                        range:textAttachmentRange];
         }
       }
     }
 
     [self didChangeText];
   } else {
-    [super applyMarkupAttributeToSelection:sender];
+    [self mtv_applyMarkupAttributeToSelection:sender];
   }
-}
-
-- (void)onMarkupLanguageHelp:(id)sender {
-  LOG_ENTRY;
 }
 
 - (void)onToggleSmartQuotes:(id)sender {
@@ -116,12 +116,12 @@
 }
 
 - (void)onDumpAttributes:(id)sender {
-  NSMutableString* string = [NSMutableString string];
+  NSMutableString *string = [NSMutableString string];
 
   [string appendString:@"\nAttributes"];
   [string appendString:@"\n==========\n"];
 
-  NSTextStorage* textStorage = [self textStorage];
+  NSTextStorage *textStorage = [self textStorage];
 
   NSRange range;
 
@@ -131,7 +131,7 @@
 
   for (NSUInteger currentIndex = 0; currentIndex < rangeLimit.length;
        currentIndex = NSMaxRange(range)) {
-    NSDictionary* dict = [textStorage attributesAtIndex:currentIndex
+    NSDictionary *dict = [textStorage attributesAtIndex:currentIndex
                                   longestEffectiveRange:&range
                                                 inRange:rangeLimit];
 
@@ -144,33 +144,28 @@
       [string appendFormat:@"Attribute: %@\n", dict];
     }
 
-    [string
-        appendFormat:@"<%@>\n\n",
-                     [[textStorage attributedSubstringFromRange:range] string]];
+    [string appendFormat:@"<%@>\n\n", [[textStorage attributedSubstringFromRange:range] string]];
   }
 
   Log(@"%@", string);
 }
 
-- (NSNumber*)markupEnabledForFilterStyleInSelectedRange:
-                 (NSString*)markupStyleName {
+- (NSNumber *)markupEnabledForFilterStyleInSelectedRange:(NSString *)markupStyleName {
   NSRange range = [self selectedRange];
 
-  NSDictionary* markupStyleAttribute = nil;
+  NSDictionary *markupStyleAttribute = nil;
   if (range.length == 0) {
-    markupStyleAttribute = [[self typingAttributes]
-        objectForKey:kRWTextViewMarkupDirectivesAttributeName];
+    markupStyleAttribute =
+        [[self typingAttributes] objectForKey:kRWTextViewMarkupDirectivesAttributeName];
   } else {
     NSRange longestRange;
 
-    markupStyleAttribute =
-        [[self textStorage] attribute:kRWTextViewMarkupDirectivesAttributeName
-                              atIndex:range.location
-                longestEffectiveRange:&longestRange
-                              inRange:range];
+    markupStyleAttribute = [[self textStorage] attribute:kRWTextViewMarkupDirectivesAttributeName
+                                                 atIndex:range.location
+                                   longestEffectiveRange:&longestRange
+                                                 inRange:range];
 
-    if (longestRange.location > range.location ||
-        (NSMaxRange(longestRange) < NSMaxRange(range))) {
+    if (longestRange.location > range.location || (NSMaxRange(longestRange) < NSMaxRange(range))) {
       return [NSNumber numberWithBool:NO];
     }
   }
@@ -187,12 +182,40 @@
 
 //***************************************************************************
 
-@implementation MarkupHTML
+@implementation RMHTML (MarkupHTML)
 
-- (NSString*)pathToFilterCommandForMarkupStyleName:(NSString*)markupStyleName {
-  for (NSDictionary* markupStyleDefinition in [Markup markupStyles]) {
-    if ([[markupStyleDefinition objectForKey:kMarkupStyleName]
-            isEqualTo:markupStyleName]) {
++ (void)load {
+  NSError *error = nil;
+
+  BOOL didSwizzle = [RMHTML jr_swizzleMethod:@selector(exportAttributedString:
+                                                                       toPath:
+                                                                 imagesFolder:
+                                                                  imagePrefix:
+                                                                 HTMLTemplate:
+                                                                   contentTag:
+                                                                     fromPage:
+                                                              depthCorrection:
+                                                                   exportMode:
+                                                                    linkStyle:)
+                                  withMethod:@selector(mh_exportAttributedString:
+                                                                          toPath:
+                                                                    imagesFolder:
+                                                                     imagePrefix:
+                                                                    HTMLTemplate:
+                                                                      contentTag:
+                                                                        fromPage:
+                                                                 depthCorrection:
+                                                                      exportMode:
+                                                                       linkStyle:)
+                                       error:&error];
+  if (!didSwizzle) {
+    Log(@"RMHTML swizzle failed: %@", [error localizedDescription]);
+  }
+}
+
+- (NSString *)pathToFilterCommandForMarkupStyleName:(NSString *)markupStyleName {
+  for (NSDictionary *markupStyleDefinition in [Markup markupStyles]) {
+    if ([[markupStyleDefinition objectForKey:kMarkupStyleName] isEqualTo:markupStyleName]) {
       return [markupStyleDefinition objectForKey:kMarkupStyleFilterCommand];
     }
   }
@@ -200,7 +223,7 @@
   return @"/bin/cat";
 }
 
-- (NSString*)pathToSmartQuotesFilterCommand {
+- (NSString *)pathToSmartQuotesFilterCommand {
   return [[Markup sharedBundle] pathForResource:@"SmartyPants"
                                          ofType:@"pl"
                                     inDirectory:@"MarkupFilters"];
@@ -208,23 +231,22 @@
 
 //---------------------------------------------------------------------------
 
-- (NSString*)exportAttributedString:(NSAttributedString*)str
-                             toPath:(NSString*)path
-                       imagesFolder:(NSString*)imagesFolder
-                        imagePrefix:(NSString*)imagePrefix
-                       HTMLTemplate:(NSMutableString*)theTemplate
-                         contentTag:(NSString*)contentTag
-                           fromPage:(id)thePage
-                    depthCorrection:(NSInteger)depthCorrection
-                         exportMode:(RWExportMode)exportMode
-                          linkStyle:(RWLinkStyle)linkStyle {
+- (NSString *)mh_exportAttributedString:(NSAttributedString *)str
+                                 toPath:(NSString *)path
+                           imagesFolder:(NSString *)imagesFolder
+                            imagePrefix:(NSString *)imagePrefix
+                           HTMLTemplate:(NSMutableString *)theTemplate
+                             contentTag:(NSString *)contentTag
+                               fromPage:(id)thePage
+                        depthCorrection:(NSInteger)depthCorrection
+                             exportMode:(RWExportMode)exportMode
+                              linkStyle:(RWLinkStyle)linkStyle {
   NSRange range;
   range.location = 0;
   range.length = [str length];
 
-  NSMutableAttributedString* filteredString =
-      [[[NSMutableAttributedString alloc]
-          initWithAttributedString:str] autorelease];
+  NSMutableAttributedString *filteredString =
+      [[[NSMutableAttributedString alloc] initWithAttributedString:str] autorelease];
 
   for (NSUInteger currentIndex = 0; currentIndex < [filteredString length];
        currentIndex = NSMaxRange(range)) {
@@ -232,7 +254,7 @@
     rangeLimit.location = 0;
     rangeLimit.length = [filteredString length];
 
-    NSDictionary* attributeValue =
+    NSDictionary *attributeValue =
         [filteredString attribute:kRWTextViewMarkupDirectivesAttributeName
                           atIndex:currentIndex
             longestEffectiveRange:&range
@@ -240,19 +262,17 @@
 
     if (attributeValue == nil) continue;
 
-    if (![[attributeValue objectForKey:@"name"] isEqualToString:@"filter"])
-      continue;
+    if (![[attributeValue objectForKey:@"name"] isEqualToString:@"filter"]) continue;
 
-    NSString* string =
-        [[filteredString attributedSubstringFromRange:range] string];
-    NSData* stringData = [string dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *string = [[filteredString attributedSubstringFromRange:range] string];
+    NSData *stringData = [string dataUsingEncoding:NSUTF8StringEncoding];
 
     // Replace links with <a href=...>
 
     NSRange linkRange;
     for (NSUInteger linkIndex = range.location; linkIndex < NSMaxRange(range);
          linkIndex = NSMaxRange(linkRange)) {
-      RWLink* link = [filteredString attribute:NSLinkAttributeName
+      RWLink *link = [filteredString attribute:NSLinkAttributeName
                                        atIndex:linkIndex
                          longestEffectiveRange:&linkRange
                                        inRange:range];
@@ -260,9 +280,8 @@
       if (link == nil) continue;
 
       // Hmm, maybe [link href] refers to MyDocument's -pageFromUniqueID method?
-      Log(@"Found link -> %d, %@ (%@), %@, %@, %@", [link internal],
-          [link href], [[link href] className], [link anchor], [link name],
-          [[link target] className]);
+      Log(@"Found link -> %d, %@ (%@), %@, %@, %@", [link internal], [link href],
+          [[link href] className], [link anchor], [link name], [[link target] className]);
 
 #if 0
 			NSDictionary* attributes = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -278,27 +297,24 @@
 #endif
     }
 
-    NSAttributedString* replacedAttributedString = nil;
+    NSAttributedString *replacedAttributedString = nil;
 
     if (exportMode == RWExportModeConvertingForWebViewDOM) {
       Log(@"Markup is converting for WebView DOM...");
 
-      NSString* replacedString = [[NSString
-          stringWithFormat:@"<pre class=\"rapidweaver-markup\">%@</pre>",
-                           [string stringEscapedForHTMLElementText]] retain];
+      NSString *replacedString =
+          [[NSString stringWithFormat:@"<pre class=\"rapidweaver-markup\">%@</pre>",
+                                      [string stringEscapedForHTMLElementText]] retain];
 
-      NSDictionary* attributes = [NSDictionary
-          dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES],
-                                       kRWTextViewIgnoreFormattingAttributeName,
-                                       nil];
+      NSDictionary *attributes =
+          [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES],
+                                                     kRWTextViewIgnoreFormattingAttributeName, nil];
 
       replacedAttributedString =
-          [[NSAttributedString alloc] initWithString:replacedString
-                                          attributes:attributes];
+          [[NSAttributedString alloc] initWithString:replacedString attributes:attributes];
     } else {
-      NSString* markupStyleName = [attributeValue objectForKey:@"style"];
-      NSString* filterCommandPath =
-          [self pathToFilterCommandForMarkupStyleName:markupStyleName];
+      NSString *markupStyleName = [attributeValue objectForKey:@"style"];
+      NSString *filterCommandPath = [self pathToFilterCommandForMarkupStyleName:markupStyleName];
 
 #if 0
 			{
@@ -308,17 +324,16 @@
 			}
 #endif
 
-      NSData* filteredData =
-          [NSTask launchedTaskWithLaunchPath:filterCommandPath
-                                   arguments:[NSArray array]
-                               standardInput:stringData];
+      NSData *filteredData = [NSTask launchedTaskWithLaunchPath:filterCommandPath
+                                                      arguments:[NSArray array]
+                                                  standardInput:stringData];
       [filteredData retain];
 
-      NSData* htmlData = nil;
+      NSData *htmlData = nil;
 
       // Smart Quote the text if necessary
       if ([Markup sharedMarkupPlugin]->usingSmartQuotes) {
-        NSString* filterCommandPath = [self pathToSmartQuotesFilterCommand];
+        NSString *filterCommandPath = [self pathToSmartQuotesFilterCommand];
         htmlData = [NSTask launchedTaskWithLaunchPath:filterCommandPath
                                             arguments:[NSArray array]
                                         standardInput:filteredData];
@@ -330,28 +345,26 @@
         htmlData = filteredData;
       }
 
-      NSString* trimmedString =
-          [[[NSString alloc] initWithData:htmlData
-                                 encoding:NSUTF8StringEncoding] autorelease];
+      NSString *trimmedString =
+          [[[NSString alloc] initWithData:htmlData encoding:NSUTF8StringEncoding] autorelease];
 
       // Released a bit further on in this method
-      NSMutableString* replacedString = [[trimmedString
-          stringByTrimmingCharactersInSet:
-              [NSCharacterSet whitespaceAndNewlineCharacterSet]] mutableCopy];
+      NSMutableString *replacedString =
+          [[trimmedString stringByTrimmingCharactersInSet:
+                              [NSCharacterSet whitespaceAndNewlineCharacterSet]] mutableCopy];
 
       [htmlData release];
       htmlData = nil;
 
-      NSDictionary* attributes = [NSDictionary
-          dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES],
-                                       kRWTextViewIgnoreFormattingAttributeName,
-                                       nil];
+      NSDictionary *attributes =
+          [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES],
+                                                     kRWTextViewIgnoreFormattingAttributeName, nil];
 
       // Kill any <p>'s from the start if it's not the start of a paragraph
       if (![filteredString isRangeAtStartOfParagraph:range]) {
         if ([replacedString length] >= 3 &&
-            [[replacedString substringWithRange:NSMakeRange(0, 3)]
-                caseInsensitiveCompare:@"<p>"] == NSOrderedSame) {
+            [[replacedString substringWithRange:NSMakeRange(0, 3)] caseInsensitiveCompare:@"<p>"] ==
+                NSOrderedSame) {
           [replacedString deleteCharactersInRange:NSMakeRange(0, 3)];
         }
       }
@@ -359,26 +372,21 @@
       // Kill any </p>'s from the end of it's not the end of a paragraph
       if (![filteredString isRangeAtEndOfParagraph:range]) {
         if ([replacedString length] >= 4 &&
-            [[replacedString
-                substringWithRange:NSMakeRange([replacedString length] - 4, 4)]
+            [[replacedString substringWithRange:NSMakeRange([replacedString length] - 4, 4)]
                 caseInsensitiveCompare:@"</p>"] == NSOrderedSame) {
-          [replacedString
-              deleteCharactersInRange:NSMakeRange([replacedString length] - 4,
-                                                  4)];
+          [replacedString deleteCharactersInRange:NSMakeRange([replacedString length] - 4, 4)];
         }
       }
 
       // Released a bit further on in this method
       replacedAttributedString =
-          [[NSAttributedString alloc] initWithString:replacedString
-                                          attributes:attributes];
+          [[NSAttributedString alloc] initWithString:replacedString attributes:attributes];
 
       [replacedString release];
       replacedString = nil;
     }
 
-    [filteredString replaceCharactersInRange:range
-                        withAttributedString:replacedAttributedString];
+    [filteredString replaceCharactersInRange:range withAttributedString:replacedAttributedString];
 
     range.length = [replacedAttributedString length];
 
@@ -386,9 +394,7 @@
     replacedAttributedString = nil;
   }
 
-  if ([RMHTML instancesRespondToSelector:@selector(
-                                             supportsConvertingToWebViewDOM)]) {
-    return [super exportAttributedString:filteredString
+  return [self mh_exportAttributedString:filteredString
                                   toPath:path
                             imagesFolder:imagesFolder
                              imagePrefix:imagePrefix
@@ -398,58 +404,6 @@
                          depthCorrection:depthCorrection
                               exportMode:exportMode
                                linkStyle:linkStyle];
-  } else {
-    return [super exportAttributedString:filteredString
-                                  toPath:path
-                            imagesFolder:imagesFolder
-                             imagePrefix:imagePrefix
-                            HTMLTemplate:theTemplate
-                              contentTag:contentTag
-                                fromPage:thePage
-                         depthCorrection:depthCorrection
-                              exportMode:exportMode
-                               linkStyle:linkStyle];
-  }
-}
-
-- (NSString*)exportAttributedString:(NSAttributedString*)str
-                             toPath:(NSString*)path
-                       imagesFolder:(NSString*)imagesFolder
-                        imagePrefix:(NSString*)imagePrefix
-                       HTMLTemplate:(NSMutableString*)theTemplate
-                         contentTag:(NSString*)contentTag
-                           fromPage:(id)thePage
-                    depthCorrection:(NSInteger)depthCorrection
-                         exportMode:(RWExportMode)exportMode {
-  return [self exportAttributedString:str
-                               toPath:path
-                         imagesFolder:imagesFolder
-                          imagePrefix:imagePrefix
-                         HTMLTemplate:theTemplate
-                           contentTag:contentTag
-                             fromPage:thePage
-                      depthCorrection:depthCorrection
-                           exportMode:exportMode
-                            linkStyle:RWLinkStyleAbsolute];
-}
-
-- (NSString*)exportAttributedString:(NSAttributedString*)str
-                             toPath:(NSString*)path
-                       imagesFolder:(NSString*)imagesFolder
-                        imagePrefix:(NSString*)imagePrefix
-                       HTMLTemplate:(NSMutableString*)theTemplate
-                         contentTag:(NSString*)contentTag
-                           fromPage:(id)thePage
-                    depthCorrection:(NSInteger)depthCorrection {
-  return [self exportAttributedString:str
-                               toPath:path
-                         imagesFolder:imagesFolder
-                          imagePrefix:imagePrefix
-                         HTMLTemplate:theTemplate
-                           contentTag:contentTag
-                             fromPage:thePage
-                      depthCorrection:depthCorrection
-                           exportMode:RWExportModeExport];
 }
 
 @end

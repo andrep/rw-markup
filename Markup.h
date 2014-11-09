@@ -10,10 +10,9 @@
 
 #if ENABLE_LOGGING
 #define Log NSLog
-#define LOG_ENTRY                                                     \
-  NSLog(@"Entered: %s (%@:%d)", __func__,                             \
-        [[NSString stringWithUTF8String:__FILE__] lastPathComponent], \
-        __LINE__);
+#define LOG_ENTRY                         \
+  NSLog(@"Entered: %s (%@:%d)", __func__, \
+        [[NSString stringWithUTF8String:__FILE__] lastPathComponent], __LINE__);
 #else
 #define Log(...) \
   do {           \
@@ -36,8 +35,7 @@
 
 + (NSArray*)markupStyles;
 
-+ (NSNumber*)markupEnabledForFilterStyleInSelectedRange:
-        (NSString*)markupStyleName;
++ (NSNumber*)markupEnabledForFilterStyleInSelectedRange:(NSString*)markupStyleName;
 
 + (void)addMarkupMenuItem;
 

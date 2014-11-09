@@ -22,22 +22,19 @@ static NSConditionLock* lock = nil;
   NSAutoreleasePool* topLevelPool = [[NSAutoreleasePool alloc] init];
 
   static NSString* pathToTextile = @"/Users/andrep/Code/Skunkworks/"
-                                   @"RapidWeaver-Plugins/Markup-3.5/"
-                                   @"MarkupFilters/Textile.pl";
+      @"RapidWeaver-Plugins/Markup-3.5/" @"MarkupFilters/Textile.pl";
 
   // static char* const bytes = "h1. This is a textile test";
   static NSData* testData = nil;
   if (testData == nil)
     testData = [[NSData
-        dataWithContentsOfFile:
-            @"/Users/andrep/Desktop/Desktop Items/ET_Bitmap_BMP.cpp"] retain];
+        dataWithContentsOfFile:@"/Users/andrep/Desktop/Desktop Items/ET_Bitmap_BMP.cpp"] retain];
   assert(testData != nil);
 
   NSAutoreleasePool* subPool = [[NSAutoreleasePool alloc] init];
 
-  NSData* data = [NSTask launchedTaskWithLaunchPath:pathToTextile
-                                          arguments:nil
-                                      standardInput:testData];
+  NSData* data =
+      [NSTask launchedTaskWithLaunchPath:pathToTextile arguments:nil standardInput:testData];
 
 #if 0
     NSLog(@"Got data (%lu): %@",
@@ -66,9 +63,7 @@ NSInteger main(const NSInteger argc, const char* const argv[]) {
 
     [lock lockWhenCondition:NO];
 
-    [NSThread detachNewThreadSelector:@selector(doIt)
-                             toTarget:foo
-                           withObject:nil];
+    [NSThread detachNewThreadSelector:@selector(doIt) toTarget:foo withObject:nil];
 
     [lock lockWhenCondition:YES];
     [lock unlockWithCondition:NO];

@@ -34,9 +34,8 @@
                       waitUntilDone:(BOOL)wait {
   NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 
-  NSInvocation* invocation = [NSInvocation
-      invocationWithMethodSignature:[self
-                                        methodSignatureForSelector:aSelector]];
+  NSInvocation* invocation =
+      [NSInvocation invocationWithMethodSignature:[self methodSignatureForSelector:aSelector]];
 
   [invocation setSelector:aSelector];
   [invocation setArgument:&argument1 atIndex:2];

@@ -35,8 +35,7 @@ static inline BOOL IsNewlineCharacter(const unichar c) {
 
     if (NSMaxRange(twoCharacterRange) >= [self length]) continue;
 
-    NSString* twoCharacters =
-        [[self string] substringWithRange:twoCharacterRange];
+    NSString* twoCharacters = [[self string] substringWithRange:twoCharacterRange];
 
     if (IsNewlineCharacter([twoCharacters characterAtIndex:0]) &&
         IsNewlineCharacter([twoCharacters characterAtIndex:1])) {
@@ -53,8 +52,7 @@ static inline BOOL IsNewlineCharacter(const unichar c) {
   if (indexAtEndOfRange == [self length]) {
     return YES;
   } else if (indexAtEndOfRange == [self length] - 1) {
-    const unichar lastCharacter =
-        [[self string] characterAtIndex:indexAtEndOfRange];
+    const unichar lastCharacter = [[self string] characterAtIndex:indexAtEndOfRange];
 
     if (IsNewlineCharacter(lastCharacter))
       return YES;
@@ -68,8 +66,7 @@ static inline BOOL IsNewlineCharacter(const unichar c) {
 
     if (NSMaxRange(twoCharactersRange) >= [self length]) continue;
 
-    NSString* twoCharacters =
-        [[self string] substringWithRange:twoCharactersRange];
+    NSString* twoCharacters = [[self string] substringWithRange:twoCharactersRange];
 
     if (IsNewlineCharacter([twoCharacters characterAtIndex:0]) &&
         IsNewlineCharacter([twoCharacters characterAtIndex:1])) {

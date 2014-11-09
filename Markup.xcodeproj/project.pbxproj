@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		073EA7BB1A0F2F7400F3D2CC /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = 073EA7BA1A0F2F7400F3D2CC /* JRSwizzle.m */; };
 		7B05D3A809CBD30B00A3FC99 /* Markup.nib in Resources */ = {isa = PBXBuildFile; fileRef = 7B05D3A609CBD30B00A3FC99 /* Markup.nib */; };
 		7B2D97320AECCE170098C6AA /* NSTaskTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B2D97240AECCD360098C6AA /* NSTaskTest.m */; };
 		7B2D97330AECCE180098C6AA /* NSTaskAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B830C330A951402005CEFF4 /* NSTaskAdditions.m */; };
@@ -42,6 +43,8 @@
 /* End PBXBuildRule section */
 
 /* Begin PBXFileReference section */
+		073EA7B91A0F2F7400F3D2CC /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JRSwizzle.h; path = jrswizzle/JRSwizzle.h; sourceTree = "<group>"; };
+		073EA7BA1A0F2F7400F3D2CC /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JRSwizzle.m; path = jrswizzle/JRSwizzle.m; sourceTree = "<group>"; };
 		089C167EFE841241C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		7B05D3A709CBD30B00A3FC99 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/Markup.nib; sourceTree = "<group>"; };
@@ -125,6 +128,8 @@
 				7BB486AE09C4300700E2C7BA /* Markup.m */,
 				7BB4874209C83A3A00E2C7BA /* MarkupTextView.h */,
 				7BB4874309C83A3A00E2C7BA /* MarkupTextView.m */,
+				073EA7B91A0F2F7400F3D2CC /* JRSwizzle.h */,
+				073EA7BA1A0F2F7400F3D2CC /* JRSwizzle.m */,
 				7BBAECF80B97CAF40022222C /* NSAttributedString+ParagraphTests.h */,
 				7BBAECF90B97CAF40022222C /* NSAttributedString+ParagraphTests.m */,
 				7B830C300A951402005CEFF4 /* NSObjectAdditions.h */,
@@ -245,7 +250,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "case \"$BUILD_STYLE\" in\n*Release*)\nbuild_dir=\"$SYMROOT/$CONFIGURATION\"\nzip=\"$build_dir/$(basename \"$FULL_PRODUCT_NAME\" .\"$WRAPPER_EXTENSION\")-\"$CURRENT_PROJECT_VERSION\".zip\"\ncd \"$build_dir\"\nrm -f \"$zip\"\n/usr/bin/zip -9qry \"$zip\" \"$FULL_PRODUCT_NAME\"\n;;\n*)\nmarkup_debug_plugin=\"$HOME/Library/Application Support/RapidWeaver/Markup-debug.rwplugin\"\n[ -L \"$markup_debug_plugin\" ] && rm \"$markup_debug_plugin\"\nln -sf \"$SYMROOT/$CONFIGURATION/$FULL_PRODUCT_NAME\" \"$markup_debug_plugin\"\n;;\nesac\n";
+			shellScript = "case \"$BUILD_STYLE\" in\n*Release*)\nbuild_dir=\"$SYMROOT/$CONFIGURATION\"\nzip=\"$build_dir/$(basename \"$FULL_PRODUCT_NAME\" .\"$WRAPPER_EXTENSION\")-\"$CURRENT_PROJECT_VERSION\".zip\"\ncd \"$build_dir\"\nrm -f \"$zip\"\n/usr/bin/zip -9qry \"$zip\" \"$FULL_PRODUCT_NAME\"\n;;\n*)\nmarkup_debug_plugin=\"$HOME/Library/Containers/com.realmacsoftware.rapidweaver6/Data/Library/Application Support/RapidWeaver/Markup-debug.rapidweaverplugin\"\nrm -rf \"$markup_debug_plugin\"\ncp -Rp \"$SYMROOT/$CONFIGURATION/$FULL_PRODUCT_NAME\" \"$markup_debug_plugin\"\n;;\nesac\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -268,6 +273,7 @@
 				7BB4874409C83A3B00E2C7BA /* MarkupTextView.m in Sources */,
 				7B830C360A951402005CEFF4 /* NSObjectAdditions.m in Sources */,
 				7B830C370A951402005CEFF4 /* NSTaskAdditions.m in Sources */,
+				073EA7BB1A0F2F7400F3D2CC /* JRSwizzle.m in Sources */,
 				7BBAECFA0B97CAF40022222C /* NSAttributedString+ParagraphTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

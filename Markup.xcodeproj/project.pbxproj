@@ -250,7 +250,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "case \"$BUILD_STYLE\" in\n*Release*)\nbuild_dir=\"$SYMROOT/$CONFIGURATION\"\nzip=\"$build_dir/$(basename \"$FULL_PRODUCT_NAME\" .\"$WRAPPER_EXTENSION\")-\"$CURRENT_PROJECT_VERSION\".zip\"\ncd \"$build_dir\"\nrm -f \"$zip\"\n/usr/bin/zip -9qry \"$zip\" \"$FULL_PRODUCT_NAME\"\n;;\n*)\nmarkup_debug_plugin=\"$HOME/Library/Containers/com.realmacsoftware.rapidweaver6/Data/Library/Application Support/RapidWeaver/Markup-debug.rapidweaverplugin\"\nrm -rf \"$markup_debug_plugin\"\ncp -Rp \"$SYMROOT/$CONFIGURATION/$FULL_PRODUCT_NAME\" \"$markup_debug_plugin\"\n;;\nesac\n";
+			shellScript = "case \"$CONFIGURATION\" in\n*Release*)\nzip=\"$BUILT_PRODUCTS_DIR/$(basename \"$FULL_PRODUCT_NAME\" .\"$WRAPPER_EXTENSION\")-\"$CURRENT_PROJECT_VERSION\".zip\"\ncd \"$BUILT_PRODUCTS_DIR\"\nrm -f \"$zip\"\n/usr/bin/zip -9qry \"$zip\" \"$FULL_PRODUCT_NAME\"\n;;\n*)\nmarkup_debug_plugin=\"$HOME/Library/Containers/com.realmacsoftware.rapidweaver6/Data/Library/Application Support/RapidWeaver/Markup-debug.rapidweaverplugin\"\nrm -rf \"$markup_debug_plugin\"\ncp -Rp \"$SYMROOT/$CONFIGURATION/$FULL_PRODUCT_NAME\" \"$markup_debug_plugin\"\n;;\nesac\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

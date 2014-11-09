@@ -7,7 +7,7 @@
 #   import <RWKit/RWAbstractPlugin.h>
 #undef template
 
-#import <RWKit/RWPluginInterface.h>
+//#import <RWKit/RWPluginInterface.h>
 #import <RWKit/RMHTML.h>
 
 //***************************************************************************

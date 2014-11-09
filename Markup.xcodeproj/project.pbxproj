@@ -62,7 +62,7 @@
 		7BBAECF80B97CAF40022222C /* NSAttributedString+ParagraphTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+ParagraphTests.h"; sourceTree = "<group>"; };
 		7BBAECF90B97CAF40022222C /* NSAttributedString+ParagraphTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+ParagraphTests.m"; sourceTree = "<group>"; };
 		7BFE8A130B70A4E2006FD7BA /* BUILDING-INSTRUCTIONS.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "BUILDING-INSTRUCTIONS.txt"; sourceTree = "<group>"; };
-		8D5B49B6048680CD000E48DA /* Markup.rwplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Markup.rwplugin; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D5B49B6048680CD000E48DA /* Markup.rapidweaverplugin */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Markup.rapidweaverplugin; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D5B49B7048680CD000E48DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -141,7 +141,7 @@
 		19C28FB8FE9D52D311CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8D5B49B6048680CD000E48DA /* Markup.rwplugin */,
+				8D5B49B6048680CD000E48DA /* Markup.rapidweaverplugin */,
 				7B2D972D0AECCE0C0098C6AA /* NSTaskTest */,
 			);
 			name = Products;
@@ -192,7 +192,7 @@
 			name = Markup;
 			productInstallPath = "$(HOME)/Library/Bundles";
 			productName = Markup;
-			productReference = 8D5B49B6048680CD000E48DA /* Markup.rwplugin */;
+			productReference = 8D5B49B6048680CD000E48DA /* Markup.rapidweaverplugin */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -201,7 +201,7 @@
 		089C1669FE841209C02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0610;
 			};
 			buildConfigurationList = 1DEB913E08733D840010E9CD /* Build configuration list for PBXProject "Markup" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -297,8 +297,7 @@
 		1DEB913B08733D840010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = /Applications/RapidWeaver.app/Contents/Frameworks;
-				GCC_DYNAMIC_NO_PIC = NO;
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -307,7 +306,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_PREPROCESS = YES;
 				INFOPLIST_PREPROCESSOR_DEFINITIONS = "CURRENT_PROJECT_VERSION=$(CURRENT_PROJECT_VERSION)";
-				INSTALL_PATH = "$(HOME)/Library/Application Support/RapidWeaver";
+				INSTALL_PATH = "$(HOME)/Library/Containers/com.realmacsoftware.rapidweaver6/Data/Library/Application Support/RapidWeaver";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-framework",
@@ -315,21 +314,20 @@
 				);
 				PRODUCT_NAME = Markup;
 				WARNING_CFLAGS = "-Wmost";
-				WRAPPER_EXTENSION = rwplugin;
+				WRAPPER_EXTENSION = rapidweaverplugin;
 			};
 			name = Debug;
 		};
 		1DEB913C08733D840010E9CD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = /Applications/RapidWeaver.app/Contents/Frameworks;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RapidWeaver-Prefix.pch";
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_PREPROCESS = YES;
 				INFOPLIST_PREPROCESSOR_DEFINITIONS = "CURRENT_PROJECT_VERSION=$(CURRENT_PROJECT_VERSION)";
-				INSTALL_PATH = "$(HOME)/Library/Application Support/RapidWeaver";
+				INSTALL_PATH = "$(HOME)/Library/Containers/com.realmacsoftware.rapidweaver6/Data/Library/Application Support/RapidWeaver";
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-framework",
@@ -337,44 +335,45 @@
 				);
 				PRODUCT_NAME = Markup;
 				WARNING_CFLAGS = "-Wmost";
-				WRAPPER_EXTENSION = rwplugin;
+				WRAPPER_EXTENSION = rapidweaverplugin;
 			};
 			name = Release;
 		};
 		1DEB913F08733D840010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION_MAJOR).$(CURRENT_PROJECT_VERSION_MINOR)";
 				CURRENT_PROJECT_VERSION_MAJOR = 0;
-				CURRENT_PROJECT_VERSION_MINOR = 20;
+				CURRENT_PROJECT_VERSION_MINOR = 60;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(HOME)/Applications/RapidWeaver 6.app/Contents/Frameworks\"",
+					"\"/Applications/RapidWeaver 6.app/Contents/Frameworks\"",
+				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx10.8;
-				VALID_ARCHS = i386;
+				SDKROOT = macosx10.9;
 			};
 			name = Debug;
 		};
 		1DEB914008733D840010E9CD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = "$(CURRENT_PROJECT_VERSION_MAJOR).$(CURRENT_PROJECT_VERSION_MINOR)";
 				CURRENT_PROJECT_VERSION_MAJOR = 0;
-				CURRENT_PROJECT_VERSION_MINOR = 20;
+				CURRENT_PROJECT_VERSION_MINOR = 60;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(HOME)/Applications/RapidWeaver 6.app/Contents/Frameworks\"",
+					"\"/Applications/RapidWeaver 6.app/Contents/Frameworks\"",
+				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx10.8;
-				VALID_ARCHS = i386;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx10.9;
 			};
 			name = Release;
 		};

@@ -200,8 +200,7 @@ static NSMutableArray* cachedMarkupStyles = nil;
     NSArray* keys = [NSArray
         arrayWithObjects:kMarkupStyleName, kMarkupStyleFilterCommand, nil];
 
-    NSEnumerator* e = [filterStylesPropertyList objectEnumerator];
-    while (NSDictionary* propertyListEntry = [e nextObject]) {
+    for (NSDictionary* propertyListEntry in filterStylesPropertyList) {
       NSString* name = [propertyListEntry objectForKey:@"Name"];
 
       NSString* filterCommandPath =
@@ -340,8 +339,7 @@ static NSMutableArray* cachedMarkupStyles = nil;
 - (void)menuNeedsUpdate:(NSMenu*)menu {
   NSArray* menuItems = [markupLanguagesMenu itemArray];
 
-  NSEnumerator* e = [menuItems objectEnumerator];
-  while (NSMenuItem* menuItem = [e nextObject]) {
+  for (NSMenuItem* menuItem in menuItems) {
     if ([menuItem tag] != kMarkupTextMenuItemTag) continue;
 
     [menuItem setState:[[Markup markupEnabledForFilterStyleInSelectedRange:

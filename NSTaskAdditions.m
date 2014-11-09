@@ -79,10 +79,10 @@
   NSString* stdoutTemporaryFilePath = [NSFileManager pathToEmptyTemporaryFile];
 
   NSMutableArray* quotedArguments = [[[NSMutableArray alloc] init] autorelease];
-  NSEnumerator* e = [arguments objectEnumerator];
-  NSString* argument;
-  while (argument = [e nextObject])
+
+  for (NSString* argument in arguments) {
     [quotedArguments addObject:[argument stringByShellQuoting]];
+  }
 
   NSString* commandLineString = [NSString
       stringWithFormat:@"%@ %@ < %@ > %@", [path stringByShellQuoting],

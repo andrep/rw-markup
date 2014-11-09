@@ -189,9 +189,7 @@
 @implementation MarkupHTML
 
 - (NSString*)pathToFilterCommandForMarkupStyleName:(NSString*)markupStyleName {
-  NSEnumerator* e = [[Markup markupStyles] objectEnumerator];
-
-  while (NSDictionary* markupStyleDefinition = [e nextObject]) {
+  for (NSDictionary* markupStyleDefinition in [Markup markupStyles]) {
     if ([[markupStyleDefinition objectForKey:kMarkupStyleName]
             isEqualTo:markupStyleName]) {
       return [markupStyleDefinition objectForKey:kMarkupStyleFilterCommand];

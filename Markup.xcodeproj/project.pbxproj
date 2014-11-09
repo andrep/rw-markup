@@ -8,15 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		7B05D3A809CBD30B00A3FC99 /* Markup.nib in Resources */ = {isa = PBXBuildFile; fileRef = 7B05D3A609CBD30B00A3FC99 /* Markup.nib */; };
-		7B2D97320AECCE170098C6AA /* NSTaskTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7B2D97240AECCD360098C6AA /* NSTaskTest.mm */; };
-		7B2D97330AECCE180098C6AA /* NSTaskAdditions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7B830C330A951402005CEFF4 /* NSTaskAdditions.mm */; };
+		7B2D97320AECCE170098C6AA /* NSTaskTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B2D97240AECCD360098C6AA /* NSTaskTest.m */; };
+		7B2D97330AECCE180098C6AA /* NSTaskAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B830C330A951402005CEFF4 /* NSTaskAdditions.m */; };
 		7B2D973E0AECCE910098C6AA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
-		7B2D97410AECCEA70098C6AA /* NSObjectAdditions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7B830C310A951402005CEFF4 /* NSObjectAdditions.mm */; };
-		7B830C360A951402005CEFF4 /* NSObjectAdditions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7B830C310A951402005CEFF4 /* NSObjectAdditions.mm */; };
-		7B830C370A951402005CEFF4 /* NSTaskAdditions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7B830C330A951402005CEFF4 /* NSTaskAdditions.mm */; settings = {COMPILER_FLAGS = "-fobjc-exceptions"; }; };
+		7B2D97410AECCEA70098C6AA /* NSObjectAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B830C310A951402005CEFF4 /* NSObjectAdditions.m */; };
+		7B830C360A951402005CEFF4 /* NSObjectAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B830C310A951402005CEFF4 /* NSObjectAdditions.m */; };
+		7B830C370A951402005CEFF4 /* NSTaskAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B830C330A951402005CEFF4 /* NSTaskAdditions.m */; settings = {COMPILER_FLAGS = "-fobjc-exceptions"; }; };
 		7B830C890A951452005CEFF4 /* MarkupFilters in Resources */ = {isa = PBXBuildFile; fileRef = 7B830C7E0A951452005CEFF4 /* MarkupFilters */; };
-		7BB486AF09C4300700E2C7BA /* Markup.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7BB486AE09C4300700E2C7BA /* Markup.mm */; };
-		7BB4874409C83A3B00E2C7BA /* MarkupTextView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7BB4874309C83A3A00E2C7BA /* MarkupTextView.mm */; };
+		7BB486AF09C4300700E2C7BA /* Markup.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BB486AE09C4300700E2C7BA /* Markup.m */; };
+		7BB4874409C83A3B00E2C7BA /* MarkupTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BB4874309C83A3A00E2C7BA /* MarkupTextView.m */; };
 		7BBAECFA0B97CAF40022222C /* NSAttributedString+ParagraphTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BBAECF90B97CAF40022222C /* NSAttributedString+ParagraphTests.m */; };
 		8D5B49B0048680CD000E48DA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
 		8D5B49B4048680CD000E48DA /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */; };
@@ -45,19 +45,19 @@
 		089C167EFE841241C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7ADFEA557BF11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		7B05D3A709CBD30B00A3FC99 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/Markup.nib; sourceTree = "<group>"; };
-		7B2D97240AECCD360098C6AA /* NSTaskTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NSTaskTest.mm; sourceTree = "<group>"; };
+		7B2D97240AECCD360098C6AA /* NSTaskTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSTaskTest.m; sourceTree = "<group>"; };
 		7B2D972D0AECCE0C0098C6AA /* NSTaskTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = NSTaskTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B830C300A951402005CEFF4 /* NSObjectAdditions.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NSObjectAdditions.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 1; };
-		7B830C310A951402005CEFF4 /* NSObjectAdditions.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; path = NSObjectAdditions.mm; sourceTree = "<group>"; tabWidth = 4; usesTabs = 1; };
+		7B830C310A951402005CEFF4 /* NSObjectAdditions.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = NSObjectAdditions.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 1; };
 		7B830C320A951402005CEFF4 /* NSTaskAdditions.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = NSTaskAdditions.h; sourceTree = "<group>"; };
-		7B830C330A951402005CEFF4 /* NSTaskAdditions.mm */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.objcpp; path = NSTaskAdditions.mm; sourceTree = "<group>"; };
+		7B830C330A951402005CEFF4 /* NSTaskAdditions.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = NSTaskAdditions.m; sourceTree = "<group>"; };
 		7B830C350A951402005CEFF4 /* RWPluginFramework.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = RWPluginFramework.h; sourceTree = "<group>"; };
 		7B830C7E0A951452005CEFF4 /* MarkupFilters */ = {isa = PBXFileReference; lastKnownFileType = folder; path = MarkupFilters; sourceTree = "<group>"; };
 		7BA410920BBDE96800377987 /* Mixed Markup and Plain Text.rw3 */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = "Mixed Markup and Plain Text.rw3"; path = "tests/Mixed Markup and Plain Text.rw3"; sourceTree = "<group>"; };
 		7BB486AD09C4300700E2C7BA /* Markup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Markup.h; sourceTree = "<group>"; };
-		7BB486AE09C4300700E2C7BA /* Markup.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Markup.mm; sourceTree = "<group>"; };
+		7BB486AE09C4300700E2C7BA /* Markup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Markup.m; sourceTree = "<group>"; };
 		7BB4874209C83A3A00E2C7BA /* MarkupTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarkupTextView.h; sourceTree = "<group>"; };
-		7BB4874309C83A3A00E2C7BA /* MarkupTextView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MarkupTextView.mm; sourceTree = "<group>"; };
+		7BB4874309C83A3A00E2C7BA /* MarkupTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarkupTextView.m; sourceTree = "<group>"; };
 		7BB4876C09C83BCB00E2C7BA /* RapidWeaver-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = "RapidWeaver-Prefix.pch"; sourceTree = "<group>"; };
 		7BBAECF80B97CAF40022222C /* NSAttributedString+ParagraphTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+ParagraphTests.h"; sourceTree = "<group>"; };
 		7BBAECF90B97CAF40022222C /* NSAttributedString+ParagraphTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+ParagraphTests.m"; sourceTree = "<group>"; };
@@ -122,16 +122,16 @@
 			isa = PBXGroup;
 			children = (
 				7BB486AD09C4300700E2C7BA /* Markup.h */,
-				7BB486AE09C4300700E2C7BA /* Markup.mm */,
+				7BB486AE09C4300700E2C7BA /* Markup.m */,
 				7BB4874209C83A3A00E2C7BA /* MarkupTextView.h */,
-				7BB4874309C83A3A00E2C7BA /* MarkupTextView.mm */,
+				7BB4874309C83A3A00E2C7BA /* MarkupTextView.m */,
 				7BBAECF80B97CAF40022222C /* NSAttributedString+ParagraphTests.h */,
 				7BBAECF90B97CAF40022222C /* NSAttributedString+ParagraphTests.m */,
 				7B830C300A951402005CEFF4 /* NSObjectAdditions.h */,
-				7B830C310A951402005CEFF4 /* NSObjectAdditions.mm */,
+				7B830C310A951402005CEFF4 /* NSObjectAdditions.m */,
 				7B830C320A951402005CEFF4 /* NSTaskAdditions.h */,
-				7B830C330A951402005CEFF4 /* NSTaskAdditions.mm */,
-				7B2D97240AECCD360098C6AA /* NSTaskTest.mm */,
+				7B830C330A951402005CEFF4 /* NSTaskAdditions.m */,
+				7B2D97240AECCD360098C6AA /* NSTaskTest.m */,
 				7BB4876C09C83BCB00E2C7BA /* RapidWeaver-Prefix.pch */,
 				7B830C350A951402005CEFF4 /* RWPluginFramework.h */,
 			);
@@ -254,9 +254,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B2D97320AECCE170098C6AA /* NSTaskTest.mm in Sources */,
-				7B2D97330AECCE180098C6AA /* NSTaskAdditions.mm in Sources */,
-				7B2D97410AECCEA70098C6AA /* NSObjectAdditions.mm in Sources */,
+				7B2D97320AECCE170098C6AA /* NSTaskTest.m in Sources */,
+				7B2D97330AECCE180098C6AA /* NSTaskAdditions.m in Sources */,
+				7B2D97410AECCEA70098C6AA /* NSObjectAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -264,10 +264,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7BB486AF09C4300700E2C7BA /* Markup.mm in Sources */,
-				7BB4874409C83A3B00E2C7BA /* MarkupTextView.mm in Sources */,
-				7B830C360A951402005CEFF4 /* NSObjectAdditions.mm in Sources */,
-				7B830C370A951402005CEFF4 /* NSTaskAdditions.mm in Sources */,
+				7BB486AF09C4300700E2C7BA /* Markup.m in Sources */,
+				7BB4874409C83A3B00E2C7BA /* MarkupTextView.m in Sources */,
+				7B830C360A951402005CEFF4 /* NSObjectAdditions.m in Sources */,
+				7B830C370A951402005CEFF4 /* NSTaskAdditions.m in Sources */,
 				7BBAECFA0B97CAF40022222C /* NSAttributedString+ParagraphTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

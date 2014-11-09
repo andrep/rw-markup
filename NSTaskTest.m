@@ -40,6 +40,7 @@ static NSConditionLock* lock = nil;
                                       standardInput:testData];
 
 #if 0
+#warning 64BIT: Check formatting arguments
     NSLog(@"Got data (%u): %@",
           [data length],
           [NSString stringWithCString:static_cast<const char*>([data bytes]) length:[data length]]);
@@ -56,7 +57,7 @@ static NSConditionLock* lock = nil;
 
 //---------------------------------------------------------------------------
 
-int main(const int argc, const char* const argv[]) {
+NSInteger main(const NSInteger argc, const char* const argv[]) {
   NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 
   lock = [[NSConditionLock alloc] init];
@@ -75,6 +76,7 @@ int main(const int argc, const char* const argv[]) {
 
     [foo release];
 
+#warning 64BIT: Check formatting arguments
     NSLog(@"At iteration %d", i);
   }
 

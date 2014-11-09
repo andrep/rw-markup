@@ -3,14 +3,16 @@
 #import "Markup.h"
 #import "MarkupTextView.h"
 
-extern "C" {
 #import "NSAttributedString+ParagraphTests.h"
 #import "NSTaskAdditions.h"
-}
 
 //***************************************************************************
 
 @implementation MarkupTextView
+
++ (void)load {
+  [RWTextView jr_swizzle:@selector(removeFormattingFromSelection:) withMethod:@selector(removeFormattingFromSelection)];
+}
 
 - (void)removeFormattingFromSelection:(id)sender {
   [[self textStorage] removeAttribute:kRWTextViewMarkupDirectivesAttributeName
@@ -133,7 +135,7 @@ extern "C" {
                                   longestEffectiveRange:&range
                                                 inRange:rangeLimit];
 
-    [string appendFormat:@"Range %u-%u\n", range.location, range.length];
+    [string appendFormat:@"Range %lu-%lu\n", (unsigned long)range.location, (unsigned long)range.length];
 
     if (dict == nil) {
       [string appendString:@"Attribute: (none)\n"];

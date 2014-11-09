@@ -1,12 +1,10 @@
 //***************************************************************************
 
-extern "C" {
 #import "Markup.h"
 #import "MarkupTextView.h"
 #import "NSObjectAdditions.h"
 
 #include <objc/runtime.h>
-}
 
 //***************************************************************************
 
@@ -59,11 +57,7 @@ static Markup* sharedMarkupPlugin = nil;
   bundle = theBundle;
   [bundle retain];
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
   [MarkupTextView poseAsClass:[RWTextView class]];
-  [MarkupHTML poseAsClass:[RMHTML class]];
-#pragma GCC diagnostic pop
 
   return YES;
 }
@@ -133,16 +127,15 @@ static NSMenu* markupLanguagesMenu = nil;
   [markupLanguagesMenu setDelegate:[self sharedMarkupPlugin]];
   [markupLanguagesMenu setAutoenablesItems:YES];
 
-  NSEnumerator* e = [[Markup markupStyles] objectEnumerator];
-  while (NSDictionary* markupStyleDefinition = [e nextObject]) {
+  for (NSDictionary *markupStyleDefinition in [Markup markupStyles]) {
     NSString* markupStyleName =
-        [markupStyleDefinition objectForKey:kMarkupStyleName];
+    [markupStyleDefinition objectForKey:kMarkupStyleName];
 
     NSMenuItem* markupMenuItem = [markupLanguagesMenu
-        addItemWithTitle:markupStyleName
-                  action:@selector(applyMarkupAttributeToSelection:)
-           keyEquivalent:@""];
-
+                                  addItemWithTitle:markupStyleName
+                                  action:@selector(applyMarkupAttributeToSelection:)
+                                  keyEquivalent:@""];
+    
     [markupMenuItem setTag:kMarkupTextMenuItemTag];
   }
 

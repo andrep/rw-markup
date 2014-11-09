@@ -25,6 +25,7 @@
 
   const NSInteger closeReturnValue = close(fileDescriptor);
   if (closeReturnValue != 0)
+#warning 64BIT: Check formatting arguments
     NSLog(@"fclose() returned %d instead of 0?", closeReturnValue);
 
   free(cPath);
@@ -79,7 +80,8 @@
 
   NSMutableArray* quotedArguments = [[[NSMutableArray alloc] init] autorelease];
   NSEnumerator* e = [arguments objectEnumerator];
-  while (NSString* argument = [e nextObject])
+  NSString* argument;
+  while (argument = [e nextObject])
     [quotedArguments addObject:[argument stringByShellQuoting]];
 
   NSString* commandLineString = [NSString

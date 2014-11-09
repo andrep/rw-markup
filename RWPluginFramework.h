@@ -98,7 +98,7 @@
 @interface RWTextView : NSTextView {
   NSColor* _ignoreBackground;
   NSColor* _htmlBackground;
-  unsigned int _addedNotificationObserver : 1;
+  unsigned int _addedNotificationObserver:1;
 }
 
 - (id)initWithFrame:(NSRect)fp8;

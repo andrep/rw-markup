@@ -93,16 +93,19 @@ static Markup* sharedMarkupPlugin = nil;
 // possible. For example, if you were making a plugin to maintain a blog, Blog,
 // Journal, or Weblog would all make good plugin names.
 
-+ (NSString*)pluginAuthor;
-{ return @"Andre Pang <ozone@algorithm.com.au>"; }
++ (NSString*)pluginAuthor {
+  return @"Andre Pang <andre.pang@gmail.com>";
+}
 // The person and/or company responsible for writing the plugin.
 
-+ (NSImage*)pluginIcon;
-{ return nil; }
++ (NSImage*)pluginIcon {
+  return nil;
+}
 // The plugin's 32 by 32 icon image for use in RapidWeaver's source list.
 
-+ (NSString*)pluginDescription;
-{ return @"Markup"; }
++ (NSString*)pluginDescription {
+  return @"Markup";
+}
 // This should return a human-readable description of what the plugin does.
 
 - (NSString*)uniqueID {

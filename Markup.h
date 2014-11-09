@@ -28,6 +28,7 @@
 @interface Markup : RWAbstractPlugin<NSMenuDelegate> {
  @public
   BOOL usingSmartQuotes;
+  NSString* _uniqueID;
 }
 
 + (Markup*)sharedMarkupPlugin;

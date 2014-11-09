@@ -156,7 +156,7 @@ static NSMenu* markupLanguagesMenu = nil;
                    withKeyPath:@"usingSmartQuotes"
                        options:nil];
 
-  [[self sharedMarkupPlugin] setValue:[NSNumber numberWithInt:NSOnState]
+  [[self sharedMarkupPlugin] setValue:[NSNumber numberWithInteger:NSOnState]
                                forKey:@"usingSmartQuotes"];
   [useSmartQuotesMenuItem setState:NSOnState];
 
@@ -180,7 +180,7 @@ static NSMenu* markupLanguagesMenu = nil;
   NSMenu* mainMenu = [[NSApplication sharedApplication] mainMenu];
   NSMenu* formatMenu = [[mainMenu itemWithTitle:@"Format"] submenu];
   NSMenuItem* htmlMenuItem = [formatMenu itemWithTitle:@"HTML"];
-  int htmlMenuItemIndex = [formatMenu indexOfItem:htmlMenuItem];
+  NSInteger htmlMenuItemIndex = [formatMenu indexOfItem:htmlMenuItem];
   [formatMenu insertItem:markupLanguagesMenuItem atIndex:htmlMenuItemIndex + 1];
 
   addedMarkupTextMenuItem = YES;
@@ -363,6 +363,6 @@ static NSMutableArray* cachedMarkupStyles = nil;
 const NSString* const kMarkupStyleFilterCommand = @"filterCommand";
 const NSString* const kMarkupStyleName = @"name";
 
-const int kMarkupTextMenuItemTag = 6002;
+const NSInteger kMarkupTextMenuItemTag = 6002;
 
 //***************************************************************************

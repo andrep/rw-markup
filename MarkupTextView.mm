@@ -82,7 +82,7 @@ extern "C" {
 
       NSRange textAttachmentRange;
 
-      for (unsigned textAttachmentLocation = range.location;
+      for (NSUInteger textAttachmentLocation = range.location;
            textAttachmentLocation < NSMaxRange(range);
            textAttachmentLocation = NSMaxRange(textAttachmentRange)) {
         NSDictionary* maybeTextAttachment =
@@ -127,7 +127,7 @@ extern "C" {
   rangeLimit.location = 0;
   rangeLimit.length = [textStorage length];
 
-  for (unsigned int currentIndex = 0; currentIndex < rangeLimit.length;
+  for (NSUInteger currentIndex = 0; currentIndex < rangeLimit.length;
        currentIndex = NSMaxRange(range)) {
     NSDictionary* dict = [textStorage attributesAtIndex:currentIndex
                                   longestEffectiveRange:&range
@@ -214,7 +214,7 @@ extern "C" {
                        HTMLTemplate:(NSMutableString*)theTemplate
                          contentTag:(NSString*)contentTag
                            fromPage:(id)thePage
-                    depthCorrection:(int)depthCorrection
+                    depthCorrection:(NSInteger)depthCorrection
                          exportMode:(RWExportMode)exportMode
                           linkStyle:(RWLinkStyle)linkStyle {
   NSRange range;
@@ -225,7 +225,7 @@ extern "C" {
       [[[NSMutableAttributedString alloc]
           initWithAttributedString:str] autorelease];
 
-  for (unsigned int currentIndex = 0; currentIndex < [filteredString length];
+  for (NSUInteger currentIndex = 0; currentIndex < [filteredString length];
        currentIndex = NSMaxRange(range)) {
     NSRange rangeLimit;
     rangeLimit.location = 0;
@@ -249,7 +249,7 @@ extern "C" {
     // Replace links with <a href=...>
 
     NSRange linkRange;
-    for (unsigned linkIndex = range.location; linkIndex < NSMaxRange(range);
+    for (NSUInteger linkIndex = range.location; linkIndex < NSMaxRange(range);
          linkIndex = NSMaxRange(linkRange)) {
       RWLink* link = [filteredString attribute:NSLinkAttributeName
                                        atIndex:linkIndex
@@ -418,7 +418,7 @@ extern "C" {
                        HTMLTemplate:(NSMutableString*)theTemplate
                          contentTag:(NSString*)contentTag
                            fromPage:(id)thePage
-                    depthCorrection:(int)depthCorrection
+                    depthCorrection:(NSInteger)depthCorrection
                          exportMode:(RWExportMode)exportMode {
   return [self exportAttributedString:str
                                toPath:path
@@ -439,7 +439,7 @@ extern "C" {
                        HTMLTemplate:(NSMutableString*)theTemplate
                          contentTag:(NSString*)contentTag
                            fromPage:(id)thePage
-                    depthCorrection:(int)depthCorrection {
+                    depthCorrection:(NSInteger)depthCorrection {
   return [self exportAttributedString:str
                                toPath:path
                          imagesFolder:imagesFolder

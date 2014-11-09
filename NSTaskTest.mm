@@ -61,7 +61,7 @@ int main(const int argc, const char* const argv[]) {
 
   lock = [[NSConditionLock alloc] init];
 
-  for (int i = 0; i < 10000; i++) {
+  for (NSInteger i = 0; i < 10000; i++) {
     Foo* foo = [[Foo alloc] init];
 
     [lock lockWhenCondition:NO];

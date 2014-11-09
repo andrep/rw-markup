@@ -19,11 +19,11 @@
 
 + (NSString*)pathToEmptyTemporaryFile {
   char* cPath = strdup("/tmp/temp.XXXXXX");
-  const int fileDescriptor = mkstemp(cPath);
+  const NSInteger fileDescriptor = mkstemp(cPath);
 
   NSString* path = [NSString stringWithUTF8String:cPath];
 
-  const int closeReturnValue = close(fileDescriptor);
+  const NSInteger closeReturnValue = close(fileDescriptor);
   if (closeReturnValue != 0)
     NSLog(@"fclose() returned %d instead of 0?", closeReturnValue);
 
@@ -88,7 +88,7 @@
                        [stdinTemporaryFilePath stringByShellQuoting],
                        [stdoutTemporaryFilePath stringByShellQuoting]];
 
-  const int systemReturnValue = system([commandLineString UTF8String]);
+  const NSInteger systemReturnValue = system([commandLineString UTF8String]);
   assert(systemReturnValue != -1 && systemReturnValue != 127);
 
   NSFileHandle* temporaryFileReader =

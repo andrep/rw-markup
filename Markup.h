@@ -49,6 +49,6 @@ extern "C" {
 extern const NSString* const kMarkupStyleFilterCommand;
 extern const NSString* const kMarkupStyleName;
 
-extern const int kMarkupTextMenuItemTag;
+extern const NSInteger kMarkupTextMenuItemTag;
 
 //***************************************************************************

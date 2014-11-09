@@ -66,7 +66,7 @@
 
 @interface RWPageAsset : NSObject
 
-+ (int)version;
++ (NSInteger)version;
 + (void)initialize;
 - (id)init;
 - (id)initWithCoder:(id)fp8;
